@@ -1,54 +1,55 @@
+//example code --->
 // Get references to page elements
 const $ = window.$;
-const $exampleText = $('#example-text');
-const $exampleDescription = $('#example-description');
-const $submitBtn = $('#submit');
-const $exampleList = $('#example-list');
+const $exampleText = $("#example-text");
+const $exampleDescription = $("#example-description");
+const $submitBtn = $("#submit");
+const $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 const API = {
   saveExample: function (example) {
     return $.ajax({
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      type: 'POST',
-      url: 'api/examples',
-      data: JSON.stringify(example)
+      type: "POST",
+      url: "api/examples",
+      data: JSON.stringify(example),
     });
   },
   getExamples: function () {
     return $.ajax({
-      url: 'api/examples',
-      type: 'GET'
+      url: "api/examples",
+      type: "GET",
     });
   },
   deleteExample: function (id) {
     return $.ajax({
-      url: 'api/examples/' + id,
-      type: 'DELETE'
+      url: "api/examples/" + id,
+      type: "DELETE",
     });
-  }
+  },
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
 const refreshExamples = function () {
   API.getExamples().then(function (data) {
     const $examples = data.map(function (example) {
-      const $a = $('<a>')
+      const $a = $("<a>")
         .text(example.text)
-        .attr('href', '/example/' + example.id);
+        .attr("href", "/example/" + example.id);
 
-      const $li = $('<li>')
+      const $li = $("<li>")
         .attr({
-          class: 'list-group-item',
-          'data-id': example.id
+          class: "list-group-item",
+          "data-id": example.id,
         })
         .append($a);
 
-      const $button = $('<button>')
-        .addClass('btn btn-danger float-right delete')
-        .text('ｘ');
+      const $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
       $li.append($button);
 
@@ -67,11 +68,11 @@ const handleFormSubmit = function (event) {
 
   const example = {
     text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    description: $exampleDescription.val().trim(),
   };
 
   if (!(example.text && example.description)) {
-    window.alert('You must enter an example text and description!');
+    window.alert("You must enter an example text and description!");
     return;
   }
 
@@ -79,16 +80,14 @@ const handleFormSubmit = function (event) {
     refreshExamples();
   });
 
-  $exampleText.val('');
-  $exampleDescription.val('');
+  $exampleText.val("");
+  $exampleDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 const handleDeleteBtnClick = function () {
-  const idToDelete = $(this)
-    .parent()
-    .attr('data-id');
+  const idToDelete = $(this).parent().attr("data-id");
 
   API.deleteExample(idToDelete).then(function () {
     refreshExamples();
@@ -96,5 +95,37 @@ const handleDeleteBtnClick = function () {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on('click', handleFormSubmit);
-$exampleList.on('click', '.delete', handleDeleteBtnClick);
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
+//-------------------------------//
+//actual code---->
+const exerciseBtn = $(".exerciseBtn");
+const fluidIntakeBtn = $(".fluidBtn");
+const sleepBtn = $(".sleepBtn");
+
+exerciseBtn.click(function () {
+  console.log("this works");
+  $(this).addClass("active");
+  fluidIntakeBtn.removeClass("active");
+  sleepBtn.removeClass("active");
+});
+
+fluidIntakeBtn.click(function () {
+  $(this).addClass("active");
+  exerciseBtn.removeClass("active");
+  sleepBtn.removeClass("active");
+});
+
+sleepBtn.click(function () {
+  $(this).addClass("active");
+  exerciseBtn.removeClass("active");
+  fluidIntakeBtn.removeClass("active");
+});
+
+if (exerciseBtn.hasClass("active")) {
+  //code to display user's exercise stuff
+} else if (fluidIntakeBtn.hasClass("active")) {
+  //code to display user's fluid intake stuff
+} else {
+  //code to display user's sleep stuff
+}

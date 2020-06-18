@@ -1,7 +1,19 @@
 .list-group-item {
   line-height: 2.5;
 }
-
+.pageTitle {
+  color: coral;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+.aboutApp {
+  background: teal;
+}
+h2 {
+  font-weight: bold;
+  color: coral;
+}
 .jumbotron {
   text-align: center;
 }

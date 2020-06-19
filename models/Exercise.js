@@ -9,16 +9,17 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     user_Id: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
 
   Exercise.associate = function (models) {
-    Exercise.hasOne(models.User, {
-      foreignKey: "User.id",
+    Exercise.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
     });
-    Exercise.belongsTo(User);
   };
 
   return Exercise;

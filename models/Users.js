@@ -20,9 +20,20 @@ module.exports = function (sequelize, DataTypes) {
 
   User.associate = function (models) {
     User.hasMany(models.Exercise, {
-      foreignKey: "user_Id",
+      foreignKey: {
+        allowNull: false,
+      },
     });
-    Exercise.belongsTo(User);
+    User.hasMany(models.Sleep, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+    User.hasMany(models.Fluid, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
 
   return User;

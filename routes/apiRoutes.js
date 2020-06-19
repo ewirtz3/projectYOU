@@ -36,7 +36,7 @@ module.exports = function (router) {
     Exercise.create({
       exercise_type: req.body.exercise_type,
       exercise_duration: req.body.exercise_duration,
-      user_Id: req.body.user_id
+      user_Id: req.body.user_Id,
     }).then(function (results) {
       res.end();
     });
@@ -46,7 +46,7 @@ module.exports = function (router) {
     Fluid.create({
       fluid_type: req.body.fluid_type,
       numOfGlasses: req.body.numOfGlasses,
-      user_id: req.body.user_Id
+      user_Id: req.body.user_Id,
     }).then(function (results) {
       res.end();
     });
@@ -55,7 +55,7 @@ module.exports = function (router) {
   router.post("/api/user/sleep", function (req, res) {
     Sleep.create({
       sleep_duration: req.body.sleep_duration,
-      user_Id: req.body.user_Id
+      user_Id: req.body.user_Id,
     }).then(function (results) {
       res.end();
     });

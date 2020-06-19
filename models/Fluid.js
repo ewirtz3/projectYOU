@@ -9,16 +9,17 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     user_Id: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
 
   Fluid.associate = function (models) {
-    Fluid.hasOne(models.User, {
-      foreignKey: "User.id",
+    Fluid.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
     });
-    Fluid.belongsTo(User);
   };
 
   return Fluid;

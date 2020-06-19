@@ -1,35 +1,32 @@
-const Router = require('express').Router;
-const db = require('../models');
+const Router = require("express").Router;
+const db = require("../models");
 
 const htmlRoutes = new Router();
 
-htmlRoutes.get('/', async (req, res) => {
+htmlRoutes.get("/", async (_, res) => {
   const dbExamples = await db.Example.findAll({});
 
-  res.render('index', {
-    msg: 'Welcome!',
-    examples: dbExamples
-  });
+  res.render("index");
 });
 
-// Load example page and pass in an example by id
-htmlRoutes.get('/example/:id', async (req, res) => {
+// Load user page based on req.params.id
+htmlRoutes.get("/users/:id", async (req, res) => {
   const options = {
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   };
 
-  const dbExample = await db.Example.findOne(options);
+  const this_user = await db.Users.findOne(options);
 
-  res.render('example', {
-    example: dbExample
+  res.render("profile", {
+    user: this_user,
   });
 });
 
 // Render 404 page for any unmatched routes
-htmlRoutes.get('*', async (req, res) => {
-  res.render('404');
+htmlRoutes.get("*", async (req, res) => {
+  res.render("404");
 });
 
 module.exports = htmlRoutes;

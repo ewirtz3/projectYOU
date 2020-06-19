@@ -16,13 +16,34 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
   });
 
   User.associate = function (models) {
     User.hasMany(models.Exercise, {
-      foreignKey: "user_Id",
+      foreignKey: {
+        allowNull: false,
+      },
     });
-    Exercise.belongsTo(User);
+    User.hasMany(models.Sleep, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+    User.hasMany(models.Fluid, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
 
   return User;

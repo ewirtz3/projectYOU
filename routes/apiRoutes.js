@@ -10,21 +10,27 @@ apiRoutes.get("/:username", (req, res) => {
 });
 
 apiRoutes.get("/:user/exercise", (req, res) => {
-  Exercise.findAll({}).then((results) => {
-    res.json(results);
-  });
+  Exercise.findAll({ Where: { username: req.params.username } }).then(
+    (results) => {
+      res.json(results);
+    }
+  );
 });
 
 apiRoutes.get("/:user/fluid", (req, res) => {
-  Fluid.findAll({}).then((results) => {
-    res.json(results);
-  });
+  Fluid.findAll({ Where: { username: req.params.username } }).then(
+    (results) => {
+      res.json(results);
+    }
+  );
 });
 
 apiRoutes.get("/:user/sleep", (req, res) => {
-  Sleep.findAll({}).then((results) => {
-    res.json(results);
-  });
+  Sleep.findAll({ Where: { username: req.params.username } }).then(
+    (results) => {
+      res.json(results);
+    }
+  );
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {

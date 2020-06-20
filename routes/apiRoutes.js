@@ -35,10 +35,30 @@ apiRoutes.get("/:user/sleep", (req, res) => {
 apiRoutes.post("/user", (req, res) => {
   console.log(req.body);
   User.create({
-    username: req.body.username,
-    password: req.body.password,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
+    // username: req.body.username,
+    // password: req.body.password,
+    // first_name: req.body.first_name,
+    // last_name: req.body.last_name,
+    ...req.body,
+  }).then((results) => {
+    res.json(results);
+  });
+});
+
+apiRoutes.post("/login", (req, res) => {
+  const user = req.body;
+  User.findOne({
+    where: {
+      username: user.username,
+    },
+  }).then((results) => {
+    if (results.dataValues.password === user.password) {
+      // res.redirect("/profile/" + results.dataValues.username);
+      // res.redirect("/users/" + results.dataValues.username);
+      res.json(results.dataValues);
+    } else {
+      res.status(400).end();
+    }
   });
 });
 

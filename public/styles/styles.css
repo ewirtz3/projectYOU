@@ -10,6 +10,21 @@
 .aboutApp {
   background: teal;
 }
+.display-stats {
+  margin: 10px;
+  height: 550px;
+  background-color: lightgrey;
+}
+
+#fit-form {
+  margin: 10px;
+  height: 550px;
+  padding: 10px;
+}
+button {
+  margin-bottom: 30px;
+}
+
 h2 {
   font-weight: bold;
   color: coral;

@@ -7,42 +7,46 @@
         </h1>
         <p class="lead">
 
-            You are currently logged in as {{ this.username }}. Keep track of your
+            You are currently logged in as <span
+                style="font-weight: bolder; font-size:26px;">{{ User.username }}</span>. Keep track
+            of
+            your
 
             exercise, fluid intake, and sleep below!
         </p>
     </div>
 </div>
 
-<div class="card text-white bg-info mb-3 container" style="width: 25%; float: left;">
-    <div class="card-header">{{this.first_name}}</div>
+<div class="card text-white bg-info mb-3 container" id="fit-form" style="width: 25%; float: left;">
+    <div class="card-header"><span style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}</span>
+    </div>
     <div class="card-body form">
-        <h5 class="card-title">Add exercise, sleep, and fluid intake here</h5>
+        <h5 class="card-title"><em>Add exercise, sleep, and fluid intake here</em></h5>
         <form>
             <hr />
-            <div class="form-row">
-                <div>
-                    <input style="width: 300%;" type="number" min="0" max="24"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Hours exercised" />
+            <div class="form-row" style="width: 100%;">
+                <div style="width: 100%;">
+                    <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
+                        style="width: 100%;" class="form-control" placeholder="Hours exercised" />
 
-                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-exercise">
+                    <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
                         Submit Exercise
                     </button>
                 </div>
-                <br />
-                <div>
-                    <input style="width: 300%;" type="number" min="0" max="24"
+
+                <div class="form-row" style="width: 100%;">
+
+                    <input style="width: 100%; display: block;" type="number" min="0" max="24"
                         onKeyPress="if(this.value.length>1) return false;" class="form-control"
                         placeholder="Hours of sleep" />
-                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-sleep">
+                    <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
                         Submit Sleep
                     </button>
                 </div>
 
-                <br />
-                <div>
-                    <select style="width: 300%;" class="custom-select my-1 mr-sm-2"
+
+                <div class="form-row" style="width: 100%;">
+                    <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
                         placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt" name="fluid"
                         onchange="checkValue(this.value);">
                         <option value="water">Water</option>
@@ -59,13 +63,14 @@
                   style="display: none;"
                 /> -->
                     </select>
-                    <input style="width: 300%;" type="number" min="0" max="99"
+                    <input style="width: 100%;" type="number" min="0" max="99"
                         onKeyPress="if(this.value.length>1) return false;" class="form-control"
                         placeholder="Number of glasses" />
+                    <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
+                        Submit Fluid Intake
+                    </button>
                 </div>
-                <button type="button" style="width: 300%;" class="btn btn-primary submit-fluid">
-                    Submit Fluid Intake
-                </button>
+
             </div>
         </form>
     </div>
@@ -75,24 +80,63 @@
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item" data-query="exercise">
-                <a class="nav-link active exerciseBtn" href="#">Exercise</a>
+                <a class="nav-link exerciseBtn" href="javascript:;">Exercise</a>
             </li>
 
             <li class="nav-item" data-query="fluid">
-                <a class="nav-link fluidBtn" href="#">Fluid Intake</a>
+                <a class="nav-link fluidBtn" href="javascript:;">Fluid Intake</a>
             </li>
             <li class="nav-item" data-query="sleep">
-                <a class="nav-link sleepBtn" href="#">Sleep</a>
+                <a class="nav-link sleepBtn" href="javascript:;">Sleep</a>
             </li>
         </ul>
     </div>
     <div class="card-body">
         <h5 class="card-title">Your stats</h5>
-        <ul class="card-text">
-            display user data here
-        </ul>
+        <div class="user-data">
+            <p id="exercise-data"></p>
+            <p id="fluid-data"></p>
+            <p id="sleep-data"></p>
+        </div>
     </div>
 </div>
 
-<script src="/js/post.js"></script>
-<script src="/js/view.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<script>
+    const exerciseBtn = $(".exerciseBtn");
+    const fluidIntakeBtn = $(".fluidBtn");
+    const sleepBtn = $(".sleepBtn");
+
+    exerciseBtn.click(function () {
+        $(this).addClass("active");
+        fluidIntakeBtn.removeClass("active");
+        sleepBtn.removeClass("active");
+        //add data from exercise table
+        $(".user-data").html("this...");
+    });
+
+    fluidIntakeBtn.click(function () {
+        $(this).addClass("active");
+        exerciseBtn.removeClass("active");
+        sleepBtn.removeClass("active");
+        //add data from fluid table
+        $(".user-data").html("...is...");
+
+    });
+
+    sleepBtn.click(function () {
+        $(this).addClass("active");
+        exerciseBtn.removeClass("active");
+        fluidIntakeBtn.removeClass("active");
+        //add data from sleep table
+        $(".user-data").html("...progress!!!<br><em>by: {{User.first_name}}</em>");
+
+    });
+
+
+
+</script>
+
+{{!-- <script src="/js/post.js"></script>
+<script src="/js/view.js"></script> --}}

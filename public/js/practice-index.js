@@ -7,6 +7,7 @@ const $fluidList = $("#fluid-list");
 const $fluidText = $("#fluid-text");
 const $exerciseText = $("#exercise-text");
 const $sleepText = $("#sleep-text");
+const $signUpBtn = $("#signUp");
 
 //methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together.
 const $fluidDescription = $("#fluid-description");
@@ -23,7 +24,9 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user",
+
+      url: "/api/user",
+
       data: JSON.stringify(user),
     });
   },
@@ -34,7 +37,8 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user/fluid",
+      url: "/api/user/fluid",
+
       data: JSON.stringify(fluid),
     });
   },
@@ -299,49 +303,62 @@ const handleDeleteSleep = function () {
 };
 
 // Add event listeners to the submit buttons
-$exerciseBtn.on("click", handleExercise);
-$fluidBtn.on("click", handleFluid);
-$sleepBtn.on("click", handleSleep);
+// $exerciseBtn.on("click", handleExercise);
+// $fluidBtn.on("click", handleFluid);
+// $sleepBtn.on("click", handleSleep);
+$signUpBtn.on("click", function () {
+  let newUser = {
+    username: $("#email-signup").val().trim(),
+    password: $("#password-signup").val().trim(),
+    first_name: "",
+    last_name: "",
+  };
+
+  API.saveUser(newUser).then((res) => {
+    console.log(res);
+  });
+});
 
 $exerciseList.on("click", ".delete", handleDeleteExercise);
 $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
 
-//actual code---->
 
-function checkFluid(val) {
-  fluidOpt = $("#fluid-opt");
-  if (val == "pick a color" || val == "others") element.style.display = "block";
-  else element.style.display = "none";
-}
+// //function checkFluid(val) {
+//   fluidOpt = $("#fluid-opt");
+//   if (val == "pick a color" || val == "others") element.style.display = "block";
+//   else element.style.display = "none";
+// }
 
-const exerciseBtn = $(".exerciseBtn");
-const fluidIntakeBtn = $(".fluidBtn");
-const sleepBtn = $(".sleepBtn");
+// const exerciseBtn = $(".exerciseBtn");
+// const fluidIntakeBtn = $(".fluidBtn");
+// const sleepBtn = $(".sleepBtn");
 
-exerciseBtn.click(function () {
-  console.log("this works");
-  $(this).addClass("active");
-  fluidIntakeBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
+// exerciseBtn.click(function () {
+//   console.log("this works");
+//   $(this).addClass("active");
+//   fluidIntakeBtn.removeClass("active");
+//   sleepBtn.removeClass("active");
+// });
 
-fluidIntakeBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
+// fluidIntakeBtn.click(function () {
+//   $(this).addClass("active");
+//   exerciseBtn.removeClass("active");
+//   sleepBtn.removeClass("active");
+// });
 
-sleepBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  fluidIntakeBtn.removeClass("active");
-});
+// sleepBtn.click(function () {
+//   $(this).addClass("active");
+//   exerciseBtn.removeClass("active");
+//   fluidIntakeBtn.removeClass("active");
+// });
 
-if (exerciseBtn.hasClass("active")) {
-  //code to display user's exercise stuff
-} else if (fluidIntakeBtn.hasClass("active")) {
-  //code to display user's fluid intake stuff
-} else {
-  //code to display user's sleep stuff
-}
+// if (exerciseBtn.hasClass("active")) {
+//   //code to display user's exercise stuff
+// } else if (fluidIntakeBtn.hasClass("active")) {
+//   //code to display user's fluid intake stuff
+// } else {
+//   //code to display user's sleep stuff
+// }
+
+

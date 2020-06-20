@@ -4,8 +4,6 @@ const db = require("../models");
 const htmlRoutes = new Router();
 
 htmlRoutes.get("/", async (_, res) => {
- 
-
   res.render("index");
 });
 
@@ -20,7 +18,7 @@ htmlRoutes.get("/users/:id", async (req, res) => {
   const this_user = await db.Users.findOne(options);
 
   res.render("profile", {
-    user: this_user,
+    username: this_user,
   });
 });
 

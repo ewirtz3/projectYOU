@@ -66,10 +66,11 @@ const API = {
   },
   ///////////////////////////////////GET METHODS
   //GET USER AJAX
-  getUser: function () {
+  getUser: function (user) {
     return $.ajax({
-      url: "user",
       type: "GET",
+      url: "/api/username",
+      data: JSON.stringify(user),
     });
   },
   //GET FLUID AJAX
@@ -310,11 +311,23 @@ $signUpBtn.on("click", function () {
   let newUser = {
     username: $("#email-signup").val().trim(),
     password: $("#password-signup").val().trim(),
-    first_name: "",
-    last_name: "",
+    first_name: $("#first-name-signup").val().trim(),
+    last_name: $("#last-name-signup").val().trim(),
   };
 
   API.saveUser(newUser).then((res) => {
+    console.log(res);
+  });
+});
+
+$loginBtn.click(() => {
+  let user = {
+    username: $("#email-login").val().trim(),
+    password: $("#password-login").val().trim(),
+  };
+  console.log(user);
+
+  API.getUser(user).then((res) => {
     console.log(res);
   });
 });

@@ -24,7 +24,9 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
+
       url: "/api/user",
+
       data: JSON.stringify(user),
     });
   },
@@ -36,6 +38,7 @@ const API = {
       },
       type: "POST",
       url: "/api/user/fluid",
+
       data: JSON.stringify(fluid),
     });
   },
@@ -320,5 +323,42 @@ $exerciseList.on("click", ".delete", handleDeleteExercise);
 $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
 
-//actual code---->
-//
+
+// //function checkFluid(val) {
+//   fluidOpt = $("#fluid-opt");
+//   if (val == "pick a color" || val == "others") element.style.display = "block";
+//   else element.style.display = "none";
+// }
+
+// const exerciseBtn = $(".exerciseBtn");
+// const fluidIntakeBtn = $(".fluidBtn");
+// const sleepBtn = $(".sleepBtn");
+
+// exerciseBtn.click(function () {
+//   console.log("this works");
+//   $(this).addClass("active");
+//   fluidIntakeBtn.removeClass("active");
+//   sleepBtn.removeClass("active");
+// });
+
+// fluidIntakeBtn.click(function () {
+//   $(this).addClass("active");
+//   exerciseBtn.removeClass("active");
+//   sleepBtn.removeClass("active");
+// });
+
+// sleepBtn.click(function () {
+//   $(this).addClass("active");
+//   exerciseBtn.removeClass("active");
+//   fluidIntakeBtn.removeClass("active");
+// });
+
+// if (exerciseBtn.hasClass("active")) {
+//   //code to display user's exercise stuff
+// } else if (fluidIntakeBtn.hasClass("active")) {
+//   //code to display user's fluid intake stuff
+// } else {
+//   //code to display user's sleep stuff
+// }
+
+

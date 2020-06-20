@@ -6,13 +6,70 @@
                 class="header-icon" />
         </h1>
         <p class="lead">
-            You are currently logged in as {{whatever}}. Keep track of your
+            You are currently logged in as {{user.first_name}}. Keep track of your
             exercise, fluid intake, and sleep below!
         </p>
     </div>
 </div>
 
-<div class="card text-center">
+<div class="card text-white bg-info mb-3 container" style="width: 25%; float: left;">
+    <div class="card-header">{{User.first_name}}</div>
+    <div class="card-body form">
+        <h5 class="card-title">Add exercise, sleep, and fluid intake here</h5>
+        <form>
+            <hr />
+            <div class="form-row">
+                <div>
+                    <input style="width: 300%;" type="number" min="0" max="24"
+                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                        placeholder="Hours exercised" />
+
+                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-exercise">
+                        Submit Exercise
+                    </button>
+                </div>
+                <br />
+                <div>
+                    <input style="width: 300%;" type="number" min="0" max="24"
+                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                        placeholder="Hours of sleep" />
+                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-sleep">
+                        Submit Sleep
+                    </button>
+                </div>
+
+                <br />
+                <div>
+                    <select style="width: 300%;" class="custom-select my-1 mr-sm-2"
+                        placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt" name="fluid"
+                        onchange="checkValue(this.value);">
+                        <option value="water">Water</option>
+                        <option value="sports-drink">Sports drink</option>
+                        <option value="juice">Juice</option>
+                        {{!-- Display input field when "other" is selected --}}
+
+                        <!-- <option value="other">Other</option>
+                <input
+                  type="text"
+                  name="other-fluid"
+                  id="fluid"
+                  placeholder="What did you drink?"
+                  style="display: none;"
+                /> -->
+                    </select>
+                    <input style="width: 300%;" type="number" min="0" max="99"
+                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                        placeholder="Number of glasses" />
+                </div>
+                <button type="button" style="width: 300%;" class="btn btn-primary submit-fluid">
+                    Submit Fluid Intake
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card text-center display-stats">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item" data-query="exercise">
@@ -29,8 +86,8 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">Your stats</h5>
-        <p class="card-text">
+        <ul class="card-text">
             display user data here
-        </p>
+        </ul>
     </div>
 </div>

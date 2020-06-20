@@ -8,10 +8,10 @@ htmlRoutes.get("/", async (_, res) => {
 });
 
 // Load user page based on req.params.id
-htmlRoutes.get("/users/:id", async (req, res) => {
+htmlRoutes.get("/users/:username", async (req, res) => {
   const options = {
     where: {
-      id: req.params.id,
+      username: req.params.username,
     },
   };
 

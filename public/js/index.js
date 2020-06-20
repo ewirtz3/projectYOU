@@ -1,49 +1,137 @@
-//example code --->
-// Get references to page elements
+//Get references to page elements
 const $ = window.$;
-const $exampleText = $("#example-text");
-const $exampleDescription = $("#example-description");
-const $submitBtn = $("#submit");
-const $exampleList = $("#example-list");
+const $sleepList = $("#sleep-list");
+const $exerciseList = $("#exercise-list");
+const $fluidList = $("#fluid-list");
+
+const $fluidText = $("#fluid-text");
+const $exerciseText = $("#exercise-text");
+const $sleepText = $("#sleep-text");
+
+//methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together.
+const $fluidDescription = $("#fluid-description");
+const $exerciseDescription = $("#exercise-description");
+const $sleepDescription = $("#sleep-description");
 
 // The API object contains methods for each kind of request we'll make
 const API = {
-  saveExample: function (example) {
+  /////////////////////////////////POST METHODS
+  //POST USER AJAX
+  saveUser: function (user) {
     return $.ajax({
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example),
+      url: "user",
+      data: JSON.stringify(user)
     });
   },
-  getExamples: function () {
+  //POST FLUID AJAX
+  saveFluid: function (fluid) {
     return $.ajax({
-      url: "api/examples",
-      type: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "user/fluid",
+      data: JSON.stringify(fluid)
     });
   },
-  deleteExample: function (id) {
+  //POST EXERCISE AJAX
+  saveExercise: function (fluid) {
     return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "user/exercise",
+      data: JSON.stringify(exercise)
     });
   },
+  //POST SLEEP AJAX
+  saveSleep: function (sleep) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "user/sleep",
+      data: JSON.stringify(sleep)
+    });
+  },
+  ///////////////////////////////////GET METHODS
+  //GET USER AJAX
+  getUser: function () {
+    return $.ajax({
+      url: "user",
+      type: "GET"
+    });
+  },
+  //GET FLUID AJAX
+  getFluid: function () {
+    return $.ajax({
+      url: "user/fluid",
+      type: "GET"
+    });
+  },
+  //GET EXERCISE AJAX
+  getExercise: function () {
+    return $.ajax({
+      url: "user/exercise",
+      type: "GET"
+    });
+  },
+  //GET SLEEP AJAX
+  getSleep: function () {
+    return $.ajax({
+      url: "user/sleep",
+      type: "GET"
+    });
+  },
+  //////////////////////////////////DELETE METHODS
+  //DELETE USER
+  deleteUser: function (id) {
+    return $.ajax({
+      url: "user/" + id,
+      type: "DELETE"
+    });
+  },
+  //DELETE EXERCISE
+  deleteExercise: function (id) {
+    return $.ajax({
+      url: "user/exercise/" + id,
+      type: "DELETE"
+    });
+  },
+  //DELETE FLUID
+  deleteFluid: function (id) {
+    return $.ajax({
+      url: "user/fluid/" + id,
+      type: "DELETE"
+    });
+  },
+  //DELETE SLEEP
+  deleteSleep: function (id) {
+    return $.ajax({
+      url: "user/sleep/" + id,
+      type: "DELETE"
+    });
+  }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-const refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    const $examples = data.map(function (example) {
+// refreshfluids gets new fluids from the db and repopulates the list
+const refreshFluid = function () {
+  API.getFluid().then(function (data) {
+    const $fluids = data.map(function (fluid) {
       const $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(fluid.text)
+        .attr("href", "/user/fluid" + fluid.id);
 
       const $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id,
+          "data-id": fluid.id
         })
         .append($a);
 
@@ -56,48 +144,169 @@ const refreshExamples = function () {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $fluidList.empty();
+    $fluidList.append($fluids);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-const handleFormSubmit = function (event) {
+// refreshExercises gets new exercises from the db and repopulates the list
+const refreshExercise = function () {
+  API.getExercise().then(function (data) {
+    const $exercises = data.map(function (exercise) {
+      const $a = $("<a>")
+        .text(exercise.text)
+        .attr("href", "/user/exercise" + exercise.id);
+
+      const $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": exercise.id
+        })
+        .append($a);
+
+      const $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    $exerciseList.empty();
+    $exerciseList.append($exercises);
+  });
+};
+
+// refreshSleep gets new sleeps from the db and repopulates the list
+const refreshSleep = function () {
+  API.getSleep().then(function (data) {
+    const $sleeps = data.map(function (sleep) {
+      const $a = $("<a>")
+        .text(sleep.text)
+        .attr("href", "/user/sleep" + sleep.id);
+      const $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": sleep.id
+        })
+        .append($a);
+      const $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+      $li.append($button);
+      return $li;
+    });
+
+    $sleepList.empty();
+    $sleepList.append($sleeps);
+  });
+};
+
+// handleFluid is called whenever we submit a new exercise
+// Save the new Fluid to the db and refresh the list
+const handleFluid = function (event) {
   event.preventDefault();
 
-  const example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim(),
+  const fluid = {
+    text: $fluidText.val().trim(),
+    description: $fluidDescription.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    window.alert("You must enter an example text and description!");
+  if (!(fluid.text && fluid.description)) {
+    window.alert("You must enter an exercise text and description!");
     return;
   }
 
-  API.saveExample(example).then(function () {
-    refreshExamples();
+  API.saveFluid(fluid).then(function () {
+    refreshFluid();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $fluidText.val("");
+  $fluidDescription.val("");
+};
+
+// handleExercise is called whenever we submit a new exercise
+// Save the new exercise to the db and refresh the list
+const handleExercise = function (event) {
+  event.preventDefault();
+
+  const exercise = {
+    text: $exerciseText.val().trim(),
+    description: $exerciseDescription.val().trim()
+  };
+
+  if (!(exercise.text && exercise.description)) {
+    window.alert("You must enter an exercise text and description!");
+    return;
+  }
+
+  API.saveExercise(exercise).then(function () {
+    refreshExercise();
+  });
+
+  $exerciseText.val("");
+  $exerciseDescription.val("");
+};
+
+// handleSleep is called whenever we submit a new sleep
+// Save the new sleep to the db and refresh the list
+const handleSleep = function (event) {
+  event.preventDefault();
+
+  const sleep = {
+    text: $sleepText.val().trim(),
+    description: $sleepDescription.val().trim()
+  };
+
+  if (!(sleep.text && sleep.description)) {
+    window.alert("You must enter an sleep text and description!");
+    return;
+  }
+
+  API.saveSleep(sleep).then(function () {
+    refreshSleep();
+  });
+
+  $sleepText.val("");
+  $sleepDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-const handleDeleteBtnClick = function () {
+// Remove Exercise from the db and refresh the list
+const handleDeleteExercise = function () {
   const idToDelete = $(this).parent().attr("data-id");
 
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
+  API.deleteExercise(idToDelete).then(function () {
+    refreshExercise();
+  });
+};
+// Remove Fluid from the db and refresh the list
+const handleDeleteFluid = function () {
+  const idToDelete = $(this).parent().attr("data-id");
+
+  API.deleteFluid(idToDelete).then(function () {
+    refreshFluid();
+  });
+};
+// Remove Sleep from the db and refresh the list
+const handleDeleteSleep = function () {
+  const idToDelete = $(this).parent().attr("data-id");
+
+  API.deleteSleep(idToDelete).then(function () {
+    refreshSleep();
   });
 };
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
-//-------------------------------//
+// Add event listeners to the submit buttons
+$exerciseBtn.on("click", handleExercise);
+$fluidBtn.on("click", handleFluid);
+$sleepBtn.on("click", handleSleep);
+
+$exerciseList.on("click", ".delete", handleDeleteExercise);
+$fluidList.on("click", ".delete", handleDeleteFluid);
+$sleepList.on("click", ".delete", handleDeleteSleep);
+
 //actual code---->
 const exerciseBtn = $(".exerciseBtn");
 const fluidIntakeBtn = $(".fluidBtn");
@@ -122,10 +331,10 @@ sleepBtn.click(function () {
   fluidIntakeBtn.removeClass("active");
 });
 
-if (exerciseBtn.hasClass("active")) {
-  //code to display user's exercise stuff
-} else if (fluidIntakeBtn.hasClass("active")) {
-  //code to display user's fluid intake stuff
-} else {
-  //code to display user's sleep stuff
-}
+// if (exerciseBtn.hasClass("active")) {
+//   //code to display user's exercise stuff
+// } else if (fluidIntakeBtn.hasClass("active")) {
+//   //code to display user's fluid intake stuff
+// } else {
+//   //code to display user's sleep stuff
+// }

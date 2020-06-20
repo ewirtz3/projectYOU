@@ -46,7 +46,7 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user/exercise",
+      url: "/api/user/exercise",
       data: JSON.stringify(exercise),
     });
   },
@@ -57,7 +57,7 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user/sleep",
+      url: "/api/user/sleep",
       data: JSON.stringify(sleep),
     });
   },
@@ -65,28 +65,28 @@ const API = {
   //GET USER AJAX
   getUser: function () {
     return $.ajax({
-      url: "user",
+      url: "/api/user",
       type: "GET",
     });
   },
   //GET FLUID AJAX
   getFluid: function () {
     return $.ajax({
-      url: "user/fluid",
+      url: "/api/user/fluid",
       type: "GET",
     });
   },
   //GET EXERCISE AJAX
   getExercise: function () {
     return $.ajax({
-      url: "user/exercise",
+      url: "/api/user/exercise",
       type: "GET",
     });
   },
   //GET SLEEP AJAX
   getSleep: function () {
     return $.ajax({
-      url: "user/sleep",
+      url: "/api/user/sleep",
       type: "GET",
     });
   },
@@ -94,28 +94,28 @@ const API = {
   //DELETE USER
   deleteUser: function (id) {
     return $.ajax({
-      url: "user/" + id,
+      url: "/api/user/" + id,
       type: "DELETE",
     });
   },
   //DELETE EXERCISE
   deleteExercise: function (id) {
     return $.ajax({
-      url: "user/exercise/" + id,
+      url: "/api/user/exercise/" + id,
       type: "DELETE",
     });
   },
   //DELETE FLUID
   deleteFluid: function (id) {
     return $.ajax({
-      url: "user/fluid/" + id,
+      url: "/api/user/fluid/" + id,
       type: "DELETE",
     });
   },
   //DELETE SLEEP
   deleteSleep: function (id) {
     return $.ajax({
-      url: "user/sleep/" + id,
+      url: "/api/user/sleep/" + id,
       type: "DELETE",
     });
   },
@@ -307,8 +307,8 @@ $signUpBtn.on("click", function () {
   let newUser = {
     username: $("#email-signup").val().trim(),
     password: $("#password-signup").val().trim(),
-    first_name: "",
-    last_name: "",
+    first_name: $("#first-name-signup").val().trim(),
+    last_name: $("#last-name-signup").val().trim(),
   };
 
   API.saveUser(newUser).then((res) => {

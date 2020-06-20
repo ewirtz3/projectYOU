@@ -7,15 +7,16 @@ const $fluidList = $("#fluid-list");
 const $fluidText = $("#fluid-text");
 const $exerciseText = $("#exercise-text");
 const $sleepText = $("#sleep-text");
+const $signUpBtn = $("#signUp");
 
-//methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together. 
+//methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together.
 const $fluidDescription = $("#fluid-description");
 const $exerciseDescription = $("#exercise-description");
 const $sleepDescription = $("#sleep-description");
 
 // The API object contains methods for each kind of request we'll make
 const API = {
-    /////////////////////////////////POST METHODS
+  /////////////////////////////////POST METHODS
   //POST USER AJAX
   saveUser: function (user) {
     return $.ajax({
@@ -23,8 +24,8 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user",
-      data: JSON.stringify(user)
+      url: "/api/user",
+      data: JSON.stringify(user),
     });
   },
   //POST FLUID AJAX
@@ -34,8 +35,8 @@ const API = {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "user/fluid",
-      data: JSON.stringify(fluid)
+      url: "/api/user/fluid",
+      data: JSON.stringify(fluid),
     });
   },
   //POST EXERCISE AJAX
@@ -46,7 +47,7 @@ const API = {
       },
       type: "POST",
       url: "user/exercise",
-      data: JSON.stringify(exercise)
+      data: JSON.stringify(exercise),
     });
   },
   //POST SLEEP AJAX
@@ -57,7 +58,7 @@ const API = {
       },
       type: "POST",
       url: "user/sleep",
-      data: JSON.stringify(sleep)
+      data: JSON.stringify(sleep),
     });
   },
   ///////////////////////////////////GET METHODS
@@ -65,30 +66,30 @@ const API = {
   getUser: function () {
     return $.ajax({
       url: "user",
-      type: "GET"
+      type: "GET",
     });
   },
   //GET FLUID AJAX
   getFluid: function () {
     return $.ajax({
       url: "user/fluid",
-      type: "GET"
+      type: "GET",
     });
   },
   //GET EXERCISE AJAX
   getExercise: function () {
     return $.ajax({
       url: "user/exercise",
-      type: "GET"
+      type: "GET",
     });
   },
   //GET SLEEP AJAX
   getSleep: function () {
     return $.ajax({
       url: "user/sleep",
-      type: "GET"
+      type: "GET",
     });
-  }
+  },
   //////////////////////////////////DELETE METHODS
   //DELETE USER
   deleteUser: function (id) {
@@ -131,7 +132,7 @@ const refreshFluid = function () {
       const $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": fluid.id
+          "data-id": fluid.id,
         })
         .append($a);
 
@@ -160,7 +161,7 @@ const refreshExercise = function () {
       const $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": exercise.id
+          "data-id": exercise.id,
         })
         .append($a);
 
@@ -188,7 +189,7 @@ const refreshSleep = function () {
       const $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": sleep.id
+          "data-id": sleep.id,
         })
         .append($a);
       const $button = $("<button>")
@@ -210,7 +211,7 @@ const handleFluid = function (event) {
 
   const fluid = {
     text: $fluidText.val().trim(),
-    description: $fluidDescription.val().trim()
+    description: $fluidDescription.val().trim(),
   };
 
   if (!(fluid.text && fluid.description)) {
@@ -233,7 +234,7 @@ const handleExercise = function (event) {
 
   const exercise = {
     text: $exerciseText.val().trim(),
-    description: $exerciseDescription.val().trim()
+    description: $exerciseDescription.val().trim(),
   };
 
   if (!(exercise.text && exercise.description)) {
@@ -256,7 +257,7 @@ const handleSleep = function (event) {
 
   const sleep = {
     text: $sleepText.val().trim(),
-    description: $sleepDescription.val().trim()
+    description: $sleepDescription.val().trim(),
   };
 
   if (!(sleep.text && sleep.description)) {
@@ -275,66 +276,49 @@ const handleSleep = function (event) {
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove Exercise from the db and refresh the list
 const handleDeleteExercise = function () {
-    const idToDelete = $(this).parent().attr("data-id");
-  
-    API.deleteExercise(idToDelete).then(function () {
-      refreshExercise();
-    });
+  const idToDelete = $(this).parent().attr("data-id");
+
+  API.deleteExercise(idToDelete).then(function () {
+    refreshExercise();
+  });
 };
 // Remove Fluid from the db and refresh the list
 const handleDeleteFluid = function () {
-    const idToDelete = $(this).parent().attr("data-id");
-  
-    API.deleteFluid(idToDelete).then(function () {
-      refreshFluid();
-    });
+  const idToDelete = $(this).parent().attr("data-id");
+
+  API.deleteFluid(idToDelete).then(function () {
+    refreshFluid();
+  });
 };
 // Remove Sleep from the db and refresh the list
 const handleDeleteSleep = function () {
-    const idToDelete = $(this).parent().attr("data-id");
-  
-    API.deleteSleep(idToDelete).then(function () {
-      refreshSleep();
-    });
+  const idToDelete = $(this).parent().attr("data-id");
+
+  API.deleteSleep(idToDelete).then(function () {
+    refreshSleep();
+  });
 };
 
 // Add event listeners to the submit buttons
-$exerciseBtn.on("click", handleExercise);
-$fluidBtn.on("click", handleFluid);
-$sleepBtn.on("click", handleSleep);
+// $exerciseBtn.on("click", handleExercise);
+// $fluidBtn.on("click", handleFluid);
+// $sleepBtn.on("click", handleSleep);
+$signUpBtn.on("click", function () {
+  let newUser = {
+    username: $("#email-signup").val().trim(),
+    password: $("#password-signup").val().trim(),
+    first_name: "",
+    last_name: "",
+  };
+
+  API.saveUser(newUser).then((res) => {
+    console.log(res);
+  });
+});
 
 $exerciseList.on("click", ".delete", handleDeleteExercise);
 $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
 
 //actual code---->
-const exerciseBtn = $(".exerciseBtn");
-const fluidIntakeBtn = $(".fluidBtn");
-const sleepBtn = $(".sleepBtn");
-
-exerciseBtn.click(function () {
-  console.log("this works");
-  $(this).addClass("active");
-  fluidIntakeBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
-
-fluidIntakeBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
-
-sleepBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  fluidIntakeBtn.removeClass("active");
-});
-
-if (exerciseBtn.hasClass("active")) {
-  //code to display user's exercise stuff
-} else if (fluidIntakeBtn.hasClass("active")) {
-  //code to display user's fluid intake stuff
-} else {
-  //code to display user's sleep stuff
-}
+//

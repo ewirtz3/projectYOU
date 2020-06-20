@@ -18,7 +18,7 @@ htmlRoutes.get("/users/:username", async (req, res) => {
   const this_user = await db.Users.findOne(options);
 
   res.render("profile", {
-    user: this_user,
+    username: this_user,
   });
 });
 

@@ -3,7 +3,6 @@ const apiRoutes = router();
 const { User, Exercise, Fluid, Sleep } = require("../models");
 
 apiRoutes.get("/:username", (req, res) => {
-  console.log(req.params.username);
   User.findOne({ Where: { username: req.params.username } }).then((results) => {
     res.json(results);
   });
@@ -33,6 +32,12 @@ apiRoutes.get("/:user/sleep", (req, res) => {
   );
 });
 
+apiRoutes.post("/user", (req, res) => {
+  console.log(req.body);
+  User.create({
+    ...req.body,
+  });
+});
 apiRoutes.post("/:user/exercise", (req, res) => {
   Exercise.create({
     exercise_type: req.body.exercise_type,

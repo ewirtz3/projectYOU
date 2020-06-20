@@ -35,9 +35,13 @@ apiRoutes.get("/:user/sleep", (req, res) => {
 apiRoutes.post("/user", (req, res) => {
   console.log(req.body);
   User.create({
-    ...req.body,
+    username: req.body.username,
+    password: req.body.password,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
   });
 });
+
 apiRoutes.post("/:user/exercise", (req, res) => {
   Exercise.create({
     exercise_type: req.body.exercise_type,

@@ -7,7 +7,7 @@
         </h1>
         <p class="lead">
 
-            You are currently logged in as {{ username }}. Keep track of your
+            You are currently logged in as {{ this.username }}. Keep track of your
 
             exercise, fluid intake, and sleep below!
         </p>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="card text-white bg-info mb-3 container" style="width: 25%; float: left;">
-    <div class="card-header">{{User.first_name}}</div>
+    <div class="card-header">{{this.first_name}}</div>
     <div class="card-body form">
         <h5 class="card-title">Add exercise, sleep, and fluid intake here</h5>
         <form>

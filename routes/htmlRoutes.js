@@ -15,10 +15,11 @@ htmlRoutes.get("/users/:username", async (req, res) => {
     },
   };
 
-  const this_user = await db.Users.findOne(options);
-
+  const this_user = await db.User.findOne(options);
+  const that_user = this_user.dataValues;
+  console.log(this_user.dataValues);
   res.render("profile", {
-    username: this_user,
+    User: that_user,
   });
 });
 

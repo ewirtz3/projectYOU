@@ -3,7 +3,7 @@ const $ = window.$;
 const $signUpBtn = $("#signUp");
 const $loginBtn = $(".loginBtn");
 
-const newUser = {
+const helloUser = {
   saveUser: function (user) {
     return $.ajax({
       headers: {
@@ -18,9 +18,10 @@ const newUser = {
   },
   getUser: function (user) {
     return $.ajax({
-      url: "/api/user",
-      type: "GET",
-      data: JSON.stringify(user),
+      url: "/api/login",
+      type: "POST",
+      data: user,
+      headers: ("Content-Type", "application/json"),
     });
   },
 };
@@ -33,19 +34,21 @@ $signUpBtn.on("click", function () {
     last_name: $("#last-name-signup").val().trim(),
   };
 
-  API.saveUser(newUser).then((res) => {
+  helloUser.saveUser(newUser).then((res) => {
     console.log(res);
   });
 });
 
-$loginBtn.click(() => {
+$loginBtn.click((event) => {
+  event.preventDefault();
   let user = {
     username: $("#username-login").val().trim(),
     password: $("#password-login").val().trim(),
   };
   console.log(user);
 
-  API.getUser(user).then((res) => {
+  helloUser.getUser(user).done((res) => {
     console.log(res);
+    window.location.replace("/users/" + res.username);
   });
 });

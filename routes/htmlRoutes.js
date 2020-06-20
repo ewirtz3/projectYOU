@@ -4,7 +4,7 @@ const db = require("../models");
 const htmlRoutes = new Router();
 
 htmlRoutes.get("/", async (_, res) => {
-  const dbExamples = await db.Example.findAll({});
+ 
 
   res.render("index");
 });

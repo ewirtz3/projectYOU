@@ -15,7 +15,13 @@
   height: 550px;
   background-color: lightgrey;
 }
-
+.footer {
+  text-align: center;
+  height: 5%;
+  background-color: lightgrey;
+  padding: 5px;
+  color: grey;
+}
 #fit-form {
   margin: 10px;
   height: 550px;

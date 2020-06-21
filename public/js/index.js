@@ -308,33 +308,3 @@ $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
 
 //actual code---->
-const exerciseBtn = $(".exerciseBtn");
-const fluidIntakeBtn = $(".fluidBtn");
-const sleepBtn = $(".sleepBtn");
-
-exerciseBtn.click(function () {
-  console.log("this works");
-  $(this).addClass("active");
-  fluidIntakeBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
-
-fluidIntakeBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  sleepBtn.removeClass("active");
-});
-
-sleepBtn.click(function () {
-  $(this).addClass("active");
-  exerciseBtn.removeClass("active");
-  fluidIntakeBtn.removeClass("active");
-});
-
-if (exerciseBtn.hasClass("active")) {
-  $(".user-data").append("<p>hi</p>");
-} else if (fluidIntakeBtn.hasClass("active")) {
-  //code to display user's fluid intake stuff
-} else {
-  //code to display user's sleep stuff
-}

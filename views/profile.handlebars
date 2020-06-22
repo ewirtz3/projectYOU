@@ -17,44 +17,48 @@
     </div>
 </div>
 
-<div class="card text-white bg-info mb-3 container" id="fit-form" style="width: 25%; float: left;">
-    <div class="card-header"><span style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}</span>
-    </div>
-    <div class="card-body form">
-        <h5 class="card-title"><em>Add exercise, sleep, and fluid intake here</em></h5>
-        <form>
-            <hr />
-            <div class="form-row" style="width: 100%;">
-                <div style="width: 100%;">
-                    <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
-                        style="width: 100%;" class="form-control" placeholder="Hours exercised" />
+<div class="row">
+    <div class="you-calc">
 
-                    <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
-                        Submit Exercise
-                    </button>
-                </div>
+        <div class="card text-white bg-info mb-3 container" id="fit-form">
+            <div class="card-header"><span
+                    style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}</span>
+            </div>
+            <div class="card-body form">
+                <h5 class="card-title"><em>Add exercise, sleep, and fluid intake here</em></h5>
+                <form>
+                    <hr />
+                    <div class="form-row" style="width: 100%;">
+                        <div style="width: 100%;">
+                            <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
+                                style="width: 100%;" class="form-control" placeholder="Hours exercised" />
 
-                <div class="form-row" style="width: 100%;">
+                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
+                                Submit Exercise
+                            </button>
+                        </div>
 
-                    <input style="width: 100%; display: block;" type="number" min="0" max="24"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Hours of sleep" />
-                    <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
-                        Submit Sleep
-                    </button>
-                </div>
+                        <div class="form-row" style="width: 100%;">
+
+                            <input style="width: 100%; display: block;" type="number" min="0" max="24"
+                                onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                                placeholder="Hours of sleep" />
+                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
+                                Submit Sleep
+                            </button>
+                        </div>
 
 
-                <div class="form-row" style="width: 100%;">
-                    <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
-                        placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt" name="fluid"
-                        onchange="checkValue(this.value);">
-                        <option value="water">Water</option>
-                        <option value="sports-drink">Sports drink</option>
-                        <option value="juice">Juice</option>
-                        {{!-- Display input field when "other" is selected --}}
+                        <div class="form-row" style="width: 100%;">
+                            <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
+                                placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt"
+                                name="fluid" onchange="checkValue(this.value);">
+                                <option value="water">Water</option>
+                                <option value="sports-drink">Sports drink</option>
+                                <option value="juice">Juice</option>
+                                {{!-- Display input field when "other" is selected --}}
 
-                        <!-- <option value="other">Other</option>
+                                <!-- <option value="other">Other</option>
                 <input
                   type="text"
                   name="other-fluid"
@@ -62,41 +66,44 @@
                   placeholder="What did you drink?"
                   style="display: none;"
                 /> -->
-                    </select>
-                    <input style="width: 100%;" type="number" min="0" max="99"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Number of glasses" />
-                    <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
-                        Submit Fluid Intake
-                    </button>
-                </div>
+                            </select>
+                            <input style="width: 100%;" type="number" min="0" max="99"
+                                onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                                placeholder="Number of glasses" />
+                            <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
+                                Submit Fluid Intake
+                            </button>
+                        </div>
 
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="you-display">
+        <div class="card text-center display-stats">
+            <div class="card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item" data-query="exercise">
+                        <a class="nav-link exerciseBtn active" href="javascript:;">Exercise</a>
+                    </li>
 
-<div class="card text-center display-stats">
-    <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item" data-query="exercise">
-                <a class="nav-link exerciseBtn active" href="javascript:;">Exercise</a>
-            </li>
+                    <li class="nav-item" data-query="fluid">
+                        <a class="nav-link fluidBtn" href="javascript:;">Fluid Intake</a>
+                    </li>
+                    <li class="nav-item" data-query="sleep">
+                        <a class="nav-link sleepBtn" href="javascript:;">Sleep</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
 
-            <li class="nav-item" data-query="fluid">
-                <a class="nav-link fluidBtn" href="javascript:;">Fluid Intake</a>
-            </li>
-            <li class="nav-item" data-query="sleep">
-                <a class="nav-link sleepBtn" href="javascript:;">Sleep</a>
-            </li>
-        </ul>
-    </div>
-    <div class="card-body">
-
-        <div class="user-data">
-            <p id="exercise-data"></p>
-            <p id="fluid-data"></p>
-            <p id="sleep-data"></p>
+                <div class="user-data">
+                    <p id="exercise-data"></p>
+                    <p id="fluid-data"></p>
+                    <p id="sleep-data"></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -41,6 +41,7 @@ $signUpBtn.on("click", function () {
 
 $loginBtn.click((event) => {
   event.preventDefault();
+
   let user = {
     username: $("#username-login").val().trim(),
     password: $("#password-login").val().trim(),

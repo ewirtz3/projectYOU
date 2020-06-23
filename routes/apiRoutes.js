@@ -47,18 +47,20 @@ apiRoutes.post("/user", (req, res) => {
 
 apiRoutes.post("/login", (req, res) => {
   const user = req.body;
+  console.log(user);
   User.findOne({
     where: {
       username: user.username,
     },
   }).then((results) => {
-    if (results.dataValues.password === user.password) {
-      // res.redirect("/profile/" + results.dataValues.username);
-      // res.redirect("/users/" + results.dataValues.username);
-      res.json(results.dataValues);
-    } else {
-      res.status(400).end();
-    }
+    console.log(results);
+    // if (results.dataValues.password === user.password) {
+    //   // res.redirect("/profile/" + results.dataValues.username);
+    //   // res.redirect("/users/" + results.dataValues.username);
+    //   res.json(results.dataValues);
+    // } else {
+    //   res.status(400).end();
+    // }
   });
 });
 

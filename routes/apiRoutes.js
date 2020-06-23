@@ -1,6 +1,7 @@
 const router = require("express").Router;
 const apiRoutes = router();
 const { User, Exercise, Fluid, Sleep } = require("../models");
+const passport = require("../config/passport");
 
 apiRoutes.get("/:username", (req, res) => {
   User.findOne({ Where: { username: req.params.username } }).then((results) => {
@@ -45,21 +46,8 @@ apiRoutes.post("/user", (req, res) => {
   });
 });
 
-apiRoutes.post("/login", (req, res) => {
-  const user = req.body;
-  User.findOne({
-    where: {
-      username: user.username,
-    },
-  }).then((results) => {
-    if (results.dataValues.password === user.password) {
-      // res.redirect("/profile/" + results.dataValues.username);
-      // res.redirect("/users/" + results.dataValues.username);
-      res.json(results.dataValues);
-    } else {
-      res.status(400).end();
-    }
-  });
+apiRoutes.post("/login", passport.authenticate("local"), (req, res) => {
+  res.json(req.user);
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {

@@ -1,5 +1,7 @@
 require("dotenv").config();
 const express = require("express");
+const session = require('express-session')
+const passport = require('./config/passport')
 const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const {
@@ -17,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan("dev"));
+
+app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Handlebars
 app.engine(

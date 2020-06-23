@@ -46,8 +46,10 @@ apiRoutes.post("/user", (req, res) => {
   });
 });
 
+
 apiRoutes.post("/login", passport.authenticate("local"), (req, res) => {
   res.json(req.user);
+
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {

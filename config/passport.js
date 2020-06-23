@@ -33,7 +33,7 @@ passport.use(new LocalStrategy(
     }
   ));
   
-  
+  // Serialize is used to keep authentication accros all html endpoints.
   passport.serializeUser(function(user, cb) {
     cb(null, user);
   });

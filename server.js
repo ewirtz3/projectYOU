@@ -3,6 +3,7 @@ const express = require("express");
 const session = require('express-session')
 const passport = require('./config/passport')
 const Handlebars = require("handlebars");
+const session = require("express-session");
 const exphbs = require("express-handlebars");
 const {
   allowInsecurePrototypeAccess,
@@ -10,6 +11,7 @@ const {
 const morgan = require("morgan");
 const routes = require("./routes");
 const db = require("./models");
+var passport = require("./config/passport");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -33,6 +35,13 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+//Passport/Sessions
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use(routes);

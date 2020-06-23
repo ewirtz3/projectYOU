@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "projectYOU",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Activity tracker for exercise, sleep, and fluid intake",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",

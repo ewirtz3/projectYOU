@@ -35,6 +35,9 @@ $signUpBtn.on("click", function () {
   };
 
   helloUser.saveUser(newUser).then((res) => {
+    alert(
+      `Sign up successful! Please log in using your credentials to the left.`
+    );
     console.log(res);
   });
 });

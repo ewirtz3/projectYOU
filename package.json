@@ -1,5 +1,5 @@
 {
-  "name": "projectYOU",
+  "name": "projectyou",
   "version": "1.0.0",
   "description": "Activity tracker for exercise, sleep, and fluid intake",
   "main": "server.js",
@@ -26,6 +26,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "express-session": "^1.17.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "sequelize": "^4.44.4"

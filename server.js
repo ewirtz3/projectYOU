@@ -10,7 +10,6 @@ const {
 const morgan = require("morgan");
 const routes = require("./routes");
 const db = require("./models");
-var passport = require("./config/passport");
 
 const app = express();
 const PORT = process.env.PORT || 8080;

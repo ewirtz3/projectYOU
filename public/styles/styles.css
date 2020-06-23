@@ -53,6 +53,17 @@ h2 {
   opacity: 70%;
 }
 /*  */
+.clock {
+  font-family: "Helvetica";
+  height: 50px;
+  width: 30%;
+  line-height: 60px;
+  margin: 10px auto 0;
+  color: #black;
+  background-color: transparent;
+  text-align: left;
+  float: left;
+}
 
 .row {
   margin: 0 auto;

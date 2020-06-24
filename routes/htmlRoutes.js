@@ -1,6 +1,6 @@
 const Router = require("express").Router;
 const db = require("../models");
-
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 const htmlRoutes = new Router();
 
 htmlRoutes.get("/", async (_, res) => {
@@ -8,7 +8,7 @@ htmlRoutes.get("/", async (_, res) => {
 });
 
 // Load user page based on req.params.id
-htmlRoutes.get("/users/:username", async (req, res) => {
+htmlRoutes.get("/users/:username", isAuthenticated, async (req, res) => {
   const options = {
     where: {
       username: req.params.username,

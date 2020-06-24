@@ -3,9 +3,15 @@ const $ = window.$;
 const $fluidText = $("#fluid-text");
 const $exerciseText = $("#exercise-text");
 const $sleepText = $("#sleep-text");
-const $fluidDescription = $("#fluid-description");
-const $exerciseDescription = $("#exercise-description");
-const $sleepDescription = $("#sleep-description");
+// const $fluidDescription = $("#fluid-description");
+// const $exerciseDescription = $("#exercise-description");
+// const $sleepDescription = $("#sleep-description");
+const usernameUrl = window.location.href.split("/")[4];
+const $submitExercise = $("#submit-exercise");
+const $submitSleep = $("#submit-sleep");
+const $submitFluid = $("#submit-fluid");
+
+console.log(usernameUrl);
 
 const newPost = {
   //POST FLUID AJAX
@@ -21,14 +27,14 @@ const newPost = {
     });
   },
   //POST EXERCISE AJAX
-  saveExercise: function (fluid) {
+  saveExercise: function (usernameUrl) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json",
       },
       type: "POST",
-      url: "/api/user/exercise",
-      data: JSON.stringify(exercise),
+      url: "/api/exercise/" + usernameUrl,
+      // data: JSON.stringify(exercise),
     });
   },
   //POST SLEEP AJAX
@@ -51,7 +57,7 @@ const handleFluid = function (event) {
 
   const fluid = {
     text: $fluidText.val().trim(),
-    description: $fluidDescription.val().trim(),
+    // description: $fluidDescription.val().trim(),
   };
 
   if (!(fluid.text && fluid.description)) {
@@ -59,7 +65,7 @@ const handleFluid = function (event) {
     return;
   }
 
-  API.saveFluid(fluid).then(function () {
+  newPost.saveFluid(fluid).then(function () {
     refreshFluid();
   });
 
@@ -74,7 +80,7 @@ const handleExercise = function (event) {
 
   const exercise = {
     text: $exerciseText.val().trim(),
-    description: $exerciseDescription.val().trim(),
+    // description: $exerciseDescription.val().trim(),
   };
 
   if (!(exercise.text && exercise.description)) {
@@ -82,7 +88,7 @@ const handleExercise = function (event) {
     return;
   }
 
-  API.saveExercise(exercise).then(function () {
+  newPost.saveExercise(exercise).then(function () {
     refreshExercise();
   });
 
@@ -97,7 +103,7 @@ const handleSleep = function (event) {
 
   const sleep = {
     text: $sleepText.val().trim(),
-    description: $sleepDescription.val().trim(),
+    // description: $sleepDescription.val().trim(),
   };
 
   if (!(sleep.text && sleep.description)) {
@@ -105,7 +111,7 @@ const handleSleep = function (event) {
     return;
   }
 
-  API.saveSleep(sleep).then(function () {
+  newPost.saveSleep(sleep).then(function () {
     refreshSleep();
   });
 
@@ -114,6 +120,6 @@ const handleSleep = function (event) {
 };
 
 //   Add event listeners to the submit buttons
-$exerciseBtn.on("click", handleExercise);
-$fluidBtn.on("click", handleFluid);
-$sleepBtn.on("click", handleSleep);
+$submitExercise.on("click", handleExercise);
+$submitFluid.on("click", handleFluid);
+$submitSleep.on("click", handleSleep);

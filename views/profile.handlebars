@@ -34,7 +34,7 @@
                             <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
                                 style="width: 100%;" class="form-control" placeholder="Hours exercised" />
 
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
+                            <button style="width: 100%;" type="button" class="btn btn-primary" id="submit-exercise">
                                 Submit Exercise
                             </button>
                         </div>
@@ -44,7 +44,7 @@
                             <input style="width: 100%; display: block;" type="number" min="0" max="24"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Hours of sleep" />
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
+                            <button style="width: 100%;" type="button" class="btn btn-primary" id="submit-sleep">
                                 Submit Sleep
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                             <input style="width: 100%;" type="number" min="0" max="99"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Number of glasses" />
-                            <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
+                            <button type="button" style="width: 100%;" class="btn btn-primary" id="submit-fluid">
                                 Submit Fluid Intake
                             </button>
                         </div>
@@ -150,5 +150,5 @@
 
 </script>
 
-{{!-- <script src="/js/post.js"></script>
-<script src="/js/view.js"></script> --}}
+<script src="/js/post.js"></script>
+<script src="/js/view.js"></script>

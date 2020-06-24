@@ -4,10 +4,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(15),
       allowNull: false,
     },
-    user_Id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // user_Id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   });
 
   Sleep.associate = function (models) {

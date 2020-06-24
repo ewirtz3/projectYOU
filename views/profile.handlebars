@@ -31,17 +31,18 @@
                     <hr />
                     <div class="form-row" style="width: 100%;">
                         <div style="width: 100%;">
-                            <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
-                                style="width: 100%;" class="form-control" placeholder="Hours exercised" />
+                            <input id="exercise-text" type="number" min="0" max="24"
+                                onKeyPress="if(this.value.length>1) return false;" style="width: 100%;"
+                                class="form-control" placeholder="Hours exercised" />
 
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
+                            <button style="width: 100%;" type="button" class="btn btn-primary submit-exercise">
                                 Submit Exercise
                             </button>
                         </div>
 
                         <div class="form-row" style="width: 100%;">
 
-                            <input style="width: 100%; display: block;" type="number" min="0" max="24"
+                            <input id="sleep-text" style="width: 100%; display: block;" type="number" min="0" max="24"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Hours of sleep" />
                             <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
@@ -52,8 +53,9 @@
 
                         <div class="form-row" style="width: 100%;">
                             <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
-                                placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt"
-                                name="fluid" onchange="checkValue(this.value);">
+                                placeholder="What did you drink today?"
+                                id="inlineFormCustomSelectPref fluid-opt fluid-text" name="fluid"
+                                onchange="checkValue(this.value);">
                                 <option value="water">Water</option>
                                 <option value="sports-drink">Sports drink</option>
                                 <option value="juice">Juice</option>
@@ -112,7 +114,7 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="/js/moment.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-
+<script src="/js/post.js"></script>
 
 <script>
     const exerciseBtn = $(".exerciseBtn");
@@ -125,7 +127,7 @@
         fluidIntakeBtn.removeClass("active");
         sleepBtn.removeClass("active");
         //add data from exercise table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>{{Exercise.exercise_duration}}<br>this...`);
     });
 
     fluidIntakeBtn.click(function () {
@@ -142,7 +144,7 @@
         exerciseBtn.removeClass("active");
         fluidIntakeBtn.removeClass("active");
         //add data from sleep table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: {{User.first_name}}</em>`);
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: {{Exercise.exercise_duration}}</em>`);
 
     });
 

@@ -7,6 +7,10 @@ const $fluidDescription = $("#fluid-description");
 const $exerciseDescription = $("#exercise-description");
 const $sleepDescription = $("#sleep-description");
 
+const $exerciseBtn = $(".submit-exercise");
+const $fluidBtn = $(".submit-fluid");
+const $sleepBtn = $(".submit-sleep");
+
 const newPost = {
   //POST FLUID AJAX
   saveFluid: function (fluid) {
@@ -21,7 +25,7 @@ const newPost = {
     });
   },
   //POST EXERCISE AJAX
-  saveExercise: function (fluid) {
+  saveExercise: function (exercise) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +63,7 @@ const handleFluid = function (event) {
     return;
   }
 
-  API.saveFluid(fluid).then(function () {
+  newPost.saveFluid(fluid).then(function () {
     refreshFluid();
   });
 
@@ -73,16 +77,17 @@ const handleExercise = function (event) {
   event.preventDefault();
 
   const exercise = {
-    text: $exerciseText.val().trim(),
-    description: $exerciseDescription.val().trim(),
+    exercise_duration: $exerciseText.val().trim(),
+
+    // description: $exerciseDescription.val().trim(),
   };
 
-  if (!(exercise.text && exercise.description)) {
-    window.alert("You must enter an exercise text and description!");
+  if (!exercise.text) {
+    window.alert("You must enter an exercise text !");
     return;
   }
 
-  API.saveExercise(exercise).then(function () {
+  newPost.saveExercise(exercise).then(function () {
     refreshExercise();
   });
 
@@ -105,7 +110,7 @@ const handleSleep = function (event) {
     return;
   }
 
-  API.saveSleep(sleep).then(function () {
+  newPost.saveSleep(sleep).then(function () {
     refreshSleep();
   });
 
@@ -114,6 +119,9 @@ const handleSleep = function (event) {
 };
 
 //   Add event listeners to the submit buttons
-$exerciseBtn.on("click", handleExercise);
+$(document).on("click", ".submit-exercise", function (event) {
+  handleExercise(event);
+});
+// $exerciseBtn.on("click", handleExercise);
 $fluidBtn.on("click", handleFluid);
 $sleepBtn.on("click", handleSleep);

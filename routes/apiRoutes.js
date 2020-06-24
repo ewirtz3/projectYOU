@@ -46,18 +46,18 @@ apiRoutes.post("/user", (req, res) => {
   });
 });
 
-
 apiRoutes.post("/login", passport.authenticate("local"), (req, res) => {
   res.json(req.user);
-
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {
+  console.log(req.body);
   Exercise.create({
-    exercise_type: req.body.exercise_type,
+    // exercise_type: req.body.exercise_type,
     exercise_duration: req.body.exercise_duration,
     user_Id: req.body.user_Id,
   }).then((results) => {
+    // console.log(results);
     res.end();
   });
 });

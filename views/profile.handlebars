@@ -1,5 +1,6 @@
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid profile-header">
     <div class="container">
+
         <h1 class="display-4">
             FITNESS TRACKER
             <img src="https://image.flaticon.com/icons/png/512/95/95788.png" alt="fitness icon" height="8%" width="8%"
@@ -7,50 +8,58 @@
         </h1>
         <p class="lead">
 
-            You are currently logged in as {{ this.username }}. Keep track of your
-
-            exercise, fluid intake, and sleep below!
+            You are currently logged in as <span
+                style="font-weight: bolder; font-size:26px;">{{ User.username }}</span>.
         </p>
+        <p class="lead">
+            Keep track of your exercise, fluid intake, and sleep below!
+        </p>
+        <p id="clock" class="clock lead">Welcome...</p>
     </div>
 </div>
 
-<div class="card text-white bg-info mb-3 container" style="width: 25%; float: left;">
-    <div class="card-header">{{this.first_name}}</div>
-    <div class="card-body form">
-        <h5 class="card-title">Add exercise, sleep, and fluid intake here</h5>
-        <form>
-            <hr />
-            <div class="form-row">
-                <div>
-                    <input style="width: 300%;" type="number" min="0" max="24"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Hours exercised" />
+<div class="row">
+    <div class="you-calc">
 
-                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-exercise">
-                        Submit Exercise
-                    </button>
-                </div>
-                <br />
-                <div>
-                    <input style="width: 300%;" type="number" min="0" max="24"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Hours of sleep" />
-                    <button style="width: 300%;" type="button" class="btn btn-primary" class="submit-sleep">
-                        Submit Sleep
-                    </button>
-                </div>
+        <div class="card text-white bg-info mb-3 container" id="fit-form">
+            <div class="card-header"><span
+                    style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}</span>
+            </div>
+            <div class="card-body form">
+                <h5 class="card-title"><em>Add exercise, sleep, and fluid intake here</em></h5>
+                <form>
+                    <hr />
+                    <div class="form-row" style="width: 100%;">
+                        <div style="width: 100%;">
+                            <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
+                                style="width: 100%;" class="form-control" placeholder="Hours exercised" />
 
-                <br />
-                <div>
-                    <select style="width: 300%;" class="custom-select my-1 mr-sm-2"
-                        placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt" name="fluid"
-                        onchange="checkValue(this.value);">
-                        <option value="water">Water</option>
-                        <option value="sports-drink">Sports drink</option>
-                        <option value="juice">Juice</option>
-                        {{!-- Display input field when "other" is selected --}}
+                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
+                                Submit Exercise
+                            </button>
+                        </div>
 
-                        <!-- <option value="other">Other</option>
+                        <div class="form-row" style="width: 100%;">
+
+                            <input style="width: 100%; display: block;" type="number" min="0" max="24"
+                                onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                                placeholder="Hours of sleep" />
+                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
+                                Submit Sleep
+                            </button>
+                        </div>
+
+
+                        <div class="form-row" style="width: 100%;">
+                            <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
+                                placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-opt"
+                                name="fluid" onchange="checkValue(this.value);">
+                                <option value="water">Water</option>
+                                <option value="sports-drink">Sports drink</option>
+                                <option value="juice">Juice</option>
+                                {{!-- Display input field when "other" is selected --}}
+
+                                <!-- <option value="other">Other</option>
                 <input
                   type="text"
                   name="other-fluid"
@@ -58,41 +67,88 @@
                   placeholder="What did you drink?"
                   style="display: none;"
                 /> -->
-                    </select>
-                    <input style="width: 300%;" type="number" min="0" max="99"
-                        onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                        placeholder="Number of glasses" />
-                </div>
-                <button type="button" style="width: 300%;" class="btn btn-primary submit-fluid">
-                    Submit Fluid Intake
-                </button>
+                            </select>
+                            <input style="width: 100%;" type="number" min="0" max="99"
+                                onKeyPress="if(this.value.length>1) return false;" class="form-control"
+                                placeholder="Number of glasses" />
+                            <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
+                                Submit Fluid Intake
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+    </div>
+    <div class="you-display">
+        <div class="card text-center display-stats">
+            <div class="card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item" data-query="exercise">
+                        <a class="nav-link exerciseBtn active" href="javascript:;">Exercise</a>
+                    </li>
+
+                    <li class="nav-item" data-query="fluid">
+                        <a class="nav-link fluidBtn" href="javascript:;">Fluid Intake</a>
+                    </li>
+                    <li class="nav-item" data-query="sleep">
+                        <a class="nav-link sleepBtn" href="javascript:;">Sleep</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+
+                <div class="user-data">
+                    <p id="exercise-data"></p>
+                    <p id="fluid-data"></p>
+                    <p id="sleep-data"></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="card text-center display-stats">
-    <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item" data-query="exercise">
-                <a class="nav-link active exerciseBtn" href="#">Exercise</a>
-            </li>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="/js/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
-            <li class="nav-item" data-query="fluid">
-                <a class="nav-link fluidBtn" href="#">Fluid Intake</a>
-            </li>
-            <li class="nav-item" data-query="sleep">
-                <a class="nav-link sleepBtn" href="#">Sleep</a>
-            </li>
-        </ul>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Your stats</h5>
-        <ul class="card-text">
-            display user data here
-        </ul>
-    </div>
-</div>
 
-<script src="/js/post.js"></script>
-<script src="/js/view.js"></script>
+<script>
+    const exerciseBtn = $(".exerciseBtn");
+    const fluidIntakeBtn = $(".fluidBtn");
+    const sleepBtn = $(".sleepBtn");
+    $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
+
+    exerciseBtn.click(function () {
+        $(this).addClass("active");
+        fluidIntakeBtn.removeClass("active");
+        sleepBtn.removeClass("active");
+        //add data from exercise table
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
+    });
+
+    fluidIntakeBtn.click(function () {
+        $(this).addClass("active");
+        exerciseBtn.removeClass("active");
+        sleepBtn.removeClass("active");
+        //add data from fluid table
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/><br>...is...`);
+
+    });
+
+    sleepBtn.click(function () {
+        $(this).addClass("active");
+        exerciseBtn.removeClass("active");
+        fluidIntakeBtn.removeClass("active");
+        //add data from sleep table
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: {{User.first_name}}</em>`);
+
+    });
+
+
+
+</script>
+
+{{!-- <script src="/js/post.js"></script>
+<script src="/js/view.js"></script> --}}

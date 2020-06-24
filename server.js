@@ -1,9 +1,11 @@
 require("dotenv").config();
 const express = require("express");
+const session = require("express-session");
+const passport = require("./config/passport");
 const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const {
-  allowInsecurePrototypeAccess,
+  allowInsecurePrototypeAccess
 } = require("@handlebars/allow-prototype-access");
 const morgan = require("morgan");
 const routes = require("./routes");
@@ -18,15 +20,26 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan("dev"));
 
+app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Handlebars
 app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "main",
-    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
   })
 );
 app.set("view engine", "handlebars");
+
+//Passport/Sessions
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use(routes);

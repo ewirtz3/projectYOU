@@ -10,15 +10,134 @@
 .aboutApp {
   background: teal;
 }
+.display-stats {
+  margin: 10px;
+  height: 550px;
+  background-color: lightgrey;
+}
+.footer {
+  text-align: center;
+  height: 300px;
+  background-color: lightgrey;
+  padding: 5px;
+  color: grey;
+  background-image: url("/img/footer.jpg");
+  position: static;
+}
+
+#fit-form {
+  margin: 10px;
+  height: 550px;
+  padding: 10px;
+}
+button {
+  margin-bottom: 30px;
+}
+
 h2 {
   font-weight: bold;
   color: coral;
 }
-.jumbotron {
+/* .jumbotron {
   text-align: center;
+} */
+
+.profile-header {
+  background-image: url("/img/header.jpg");
+  text-align: left;
 }
+
 .header-icon {
   width: 8%;
   height: 8%;
   opacity: 70%;
+}
+/*  */
+.clock {
+  font-family: "Helvetica";
+  height: 50px;
+  width: 30%;
+  line-height: 60px;
+  margin: 10px auto 0;
+  color: #black;
+  background-color: transparent;
+  text-align: left;
+  float: left;
+}
+
+.row {
+  margin: 0 auto;
+}
+
+@media (min-width: 320px) {
+  .you-display {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-calc {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+@media (min-width: 480px) {
+  .you-display {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-calc {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+@media (min-width: 600px) {
+  .you-calc {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-display {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+@media (min-width: 801px) {
+  .you-calc {
+    width: 25%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-display {
+    width: 65%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+@media (min-width: 1025px) {
+  .you-calc {
+    width: 25%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-display {
+    width: 65%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+@media (min-width: 1281px) {
+  .you-calc {
+    width: 25%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .you-display {
+    width: 65%;
+    margin: 0 auto;
+    padding: 10px;
+  }
 }

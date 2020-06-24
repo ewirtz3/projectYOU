@@ -50,10 +50,12 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
 
-  // User.prototype.validPassword = (password) => {
-  //   console.log(password);
-  //   return bcrypt.compareSync(password.toString(), this.password);
-  // };
+  User.prototype.validPassword = (password) => {
+    if (password === this.password) {
+      return true;
+    }
+    return false;
+  };
 
   // User.addHook("beforeCreate", (user) => {
   //   user.password = bcrypt.hashSync(

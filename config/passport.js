@@ -32,7 +32,7 @@ passport.use(
   )
 );
 
-// Serialize is used to keep authentication accros all html endpoints.
+// Serialize is used to keep authentication across all html endpoints.
 passport.serializeUser(function (user, cb) {
   cb(null, user);
 });

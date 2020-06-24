@@ -50,11 +50,13 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
 
-  User.prototype.validPassword = (password) => {
+  User.prototype.validPassword = function (password) {
     if (password === this.password) {
       return true;
+    } else {
+      alert("Incorrect password!");
+      return false;
     }
-    return false;
   };
 
   // User.addHook("beforeCreate", (user) => {

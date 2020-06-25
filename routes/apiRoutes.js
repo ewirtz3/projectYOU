@@ -54,10 +54,10 @@ apiRoutes.post("/:user/exercise", (req, res) => {
   console.log(req.body);
   Exercise.create({
     // exercise_type: req.body.exercise_type,
-    exercise_duration: req.body.exercise_duration,
-    user_Id: req.body.user_Id,
+    ...req.body,
+    // exercise_duration: req.body.exercise_duration,
+    // UserId: req.body.user_Id,
   }).then((results) => {
-    // console.log(results);
     res.end();
   });
 });

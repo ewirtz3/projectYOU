@@ -81,8 +81,9 @@ const handleExercise = function (event) {
 
     // description: $exerciseDescription.val().trim(),
   };
+  console.log("logging exercise " + exercise.exercise_duration);
 
-  if (!exercise.text) {
+  if (!exercise.exercise_duration) {
     window.alert("You must enter an exercise text !");
     return;
   }

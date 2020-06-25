@@ -10,7 +10,7 @@ CREATE TABLE Exercises (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     exercise_type VARCHAR(30) NOT NULL,
     exercise_duration INTEGER(3) NOT NULL,
-    user_Id INTEGER(3) NOT NULL,
+    user_Id INTEGER(3),
     FOREIGN KEY (user_Id) REFERENCES Users(id)
 );
 

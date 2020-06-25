@@ -8,10 +8,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(3),
       allowNull: false,
     },
-    // user_Id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
 
   Exercise.associate = function (models) {

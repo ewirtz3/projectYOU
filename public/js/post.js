@@ -10,6 +10,8 @@ const $sleepDescription = $("#sleep-description");
 const $exerciseBtn = $(".submit-exercise");
 const $fluidBtn = $(".submit-fluid");
 const $sleepBtn = $(".submit-sleep");
+
+//arrays used to store user input so they can be added up later
 const exerciseArr = [];
 const fluidArr = [];
 const sleepArr = [];
@@ -55,15 +57,19 @@ const newPost = {
 // Save the new Fluid to the db and refresh the list
 const handleFluid = function (event) {
   event.preventDefault();
+  //clears form instructions
+  $("#form-instr").html("");
+
   const fluid = {
     fluid_type: $(".fluid-opt").val().trim(),
     numOfGlasses: $(".numOfGlasses").val().trim(),
     user_Id: 1,
   };
+  //adds user's input
   fluidArr.push(parseInt(fluid.numOfGlasses));
   totalFluid = fluidArr.reduce((a, b) => a + b, 0);
-  console.log(fluidArr);
 
+  //display user input
   $("#fluid-data").html(
     `<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/>` +
       "<h5>You've drank for a total of " +
@@ -72,6 +78,7 @@ const handleFluid = function (event) {
       fluid.fluid_type +
       "!</h5>"
   );
+
   if (!fluid.numOfGlasses) {
     window.alert("You must enter an amount of fluid intake!");
     return;
@@ -80,21 +87,20 @@ const handleFluid = function (event) {
   newPost.saveFluid(fluid).then(function () {
     refreshFluid();
   });
-
-  $fluidText.val("");
-  $fluidDescription.val("");
+  //Clear field
+  $(".numOfGlasses").val("");
 };
 
 // handleExercise is called whenever we submit a new exercise
 // Save the new exercise to the db and refresh the list
 const handleExercise = function (event) {
   event.preventDefault();
+  $("#form-instr").html("");
 
   const exercise = {
     exercise_duration: $exerciseText.val().trim(),
-
-    // description: $exerciseDescription.val().trim(),
   };
+  //adds the user's input together
   exerciseArr.push(parseInt(exercise.exercise_duration));
   totalExercise = exerciseArr.reduce((a, b) => a + b, 0);
 
@@ -109,11 +115,7 @@ const handleExercise = function (event) {
     window.alert("You must enter an exercise text !");
     return;
   }
-
-  // newPost.saveExercise(exercise).then(function () {
-  //   refreshExercise();
-  // });
-
+  //clears fields
   $exerciseText.val("");
   $exerciseDescription.val("");
 };
@@ -122,14 +124,13 @@ const handleExercise = function (event) {
 // Save the new sleep to the db and refresh the list
 const handleSleep = function (event) {
   event.preventDefault();
+  $("#form-instr").html("");
 
   const sleep = {
     sleep_duration: $sleepText.val().trim(),
-    // description: $sleepDescription.val().trim(),
   };
   sleepArr.push(parseInt(sleep.sleep_duration));
   totalSleep = sleepArr.reduce((a, b) => a + b, 0);
-  console.log(sleepArr);
 
   $("#sleep-data").html(
     `<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/>` +
@@ -142,10 +143,6 @@ const handleSleep = function (event) {
     return;
   }
 
-  // newPost.saveSleep(sleep).then(function () {
-  //   refreshSleep();
-  // });
-
   $sleepText.val("");
   $sleepDescription.val("");
 };
@@ -154,7 +151,6 @@ const handleSleep = function (event) {
 $(document).on("click", ".submit-exercise", function (event) {
   handleExercise(event);
 });
-// $exerciseBtn.on("click", handleExercise);
 $(document).on("click", ".submit-fluid", function (event) {
   handleFluid(event);
 });

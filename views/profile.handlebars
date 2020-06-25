@@ -19,7 +19,7 @@
 
 
 <div class="row" id="grad">
-    <div class="you-calc">
+    <aside class="you-calc">
 
         <div class="card text-white mb-3 container" id="fit-form">
             <div class="card-header">Welcome, <span
@@ -58,16 +58,6 @@
                                 <option value="water">Water</option>
                                 <option value="sports drink">Sports drink</option>
                                 <option value="juice">Juice</option>
-                                {{!-- Display input field when "other" is selected --}}
-
-                                <!-- <option value="other">Other</option>
-                <input
-                  type="text"
-                  name="other-fluid"
-                  id="fluid"
-                  placeholder="What did you drink?"
-                  style="display: none;"
-                /> -->
                             </select>
                             <input style="width: 100%;" type="number" min="0" max="99"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control numOfGlasses"
@@ -81,8 +71,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="you-display">
+    </aside>
+    <main class="you-display">
         <div class="card text-center display-stats">
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills">
@@ -100,14 +90,15 @@
             </div>
             <div class="card-body">
 
-                <div class="user-data">
+                <section class="user-data">
+                    <div id="form-instr"></div>
                     <div id="exercise-data"></div>
                     <div id="fluid-data"></div>
                     <div id="sleep-data"></div>
-                </div>
+                </section>
             </div>
         </div>
-    </div>
+    </main>
 </div>
 
 
@@ -120,7 +111,7 @@
     const exerciseBtn = $(".exerciseBtn");
     const fluidIntakeBtn = $(".fluidBtn");
     const sleepBtn = $(".sleepBtn");
-    //$(".user-data").html(`<h5>Use the form to track your stats!</h5>`);
+    const formInstructions = $("#form-instr").html(`<h5>Use the form to track your stats!</h5>`);
 
     exerciseBtn.click(function () {
         $(this).addClass("active");
@@ -129,10 +120,9 @@
         $("#exercise-data").removeClass("hide")
         $("#fluid-data").addClass("hide")
         $("#sleep-data").addClass("hide")
+        formInstructions.html("")
 
 
-
-        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>`);
     });
 
     fluidIntakeBtn.click(function () {
@@ -142,8 +132,8 @@
         $("#exercise-data").addClass("hide")
         $("#fluid-data").removeClass("hide")
         $("#sleep-data").addClass("hide")
+        formInstructions.html("")
 
-        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/>`);
 
     });
 
@@ -154,14 +144,11 @@
         $("#exercise-data").addClass("hide")
         $("#fluid-data").addClass("hide")
         $("#sleep-data").removeClass("hide")
+        formInstructions.html("")
 
-        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/>`);
 
     });
 
 
 
 </script>
-
-{{!-- <script src="/js/post.js"></script>
-<script src="/js/view.js"></script> --}}

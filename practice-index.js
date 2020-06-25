@@ -74,7 +74,6 @@ const fluidIntakeBtn = $(".fluidBtn");
 const sleepBtn = $(".sleepBtn");
 
 exerciseBtn.click(function () {
-  console.log("this works");
   $(this).addClass("active");
   fluidIntakeBtn.removeClass("active");
   sleepBtn.removeClass("active");

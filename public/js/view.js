@@ -30,7 +30,7 @@ const userView = {
 
 // refreshfluids gets new fluids from the db and repopulates the list
 const refreshFluid = function () {
-  API.getFluid().then(function (data) {
+  newPost.getFluid().then(function (data) {
     const $fluids = data.map(function (fluid) {
       const $a = $("<a>")
         .text(fluid.text)
@@ -59,7 +59,7 @@ const refreshFluid = function () {
 
 // refreshExercises gets new exercises from the db and repopulates the list
 const refreshExercise = function () {
-  API.getExercise().then(function (data) {
+  newPost.getExercise().then(function (data) {
     const $exercises = data.map(function (exercise) {
       const $a = $("<a>")
         .text(exercise.text)
@@ -88,7 +88,7 @@ const refreshExercise = function () {
 
 // refreshSleep gets new sleeps from the db and repopulates the list
 const refreshSleep = function () {
-  API.getSleep().then(function (data) {
+  newPost.getSleep().then(function (data) {
     const $sleeps = data.map(function (sleep) {
       const $a = $("<a>")
         .text(sleep.text)

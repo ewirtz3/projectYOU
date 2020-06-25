@@ -28,7 +28,7 @@
 
 .footer {
   text-align: center;
-  height: 100px;
+  height: 150px;
   background-color: lightgrey;
   padding: 5px;
   color: black;
@@ -37,9 +37,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* text-shadow: 2px 2px 2px white; */
+  text-shadow: 0.5px 0px 0px white;
   font-style: italic;
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.75);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .form-control {

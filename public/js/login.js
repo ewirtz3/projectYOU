@@ -49,7 +49,6 @@ $loginBtn.click((event) => {
     username: $("#username-login").val().trim(),
     password: $("#password-login").val().trim(),
   };
-  console.log(user);
 
   helloUser.getUser(user).done((res) => {
     console.log(res);

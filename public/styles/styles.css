@@ -13,30 +13,39 @@
 .display-stats {
   margin: 10px;
   height: 550px;
-  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  background-color: rgba(23, 214, 214, 0.671);
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
+  background-color: rgba(31, 172, 172, 0.623);
 }
+
+.hide {
+  display: none;
+}
+.nav-link {
+  color: black;
+}
+
 .footer {
   text-align: center;
-  height: 400px;
+  height: 100px;
   background-color: lightgrey;
   padding: 5px;
-  color: grey;
+  color: black;
   background-image: url("/img/footer.jpg");
   position: static;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
-  text-shadow: 2px 2px 2px #000000;
+  /* text-shadow: 2px 2px 2px white; */
+  font-style: italic;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.75);
 }
 
 .form-control {
-  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 #grad {
@@ -48,12 +57,14 @@
 
 #fit-form {
   margin: 10px;
-  height: 550px;
+  height: 600px;
   padding: 10px;
-  background-color: #ff5100b0;
-  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  border: none;
+  background-image: linear-gradient(#ff5100b0, rgba(101, 185, 185, 0.671));
+
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
 }
 button {
@@ -81,7 +92,7 @@ h2 {
   height: 8%;
   opacity: 70%;
 }
-/*  */
+
 .clock {
   font-family: "Helvetica";
   width: 100%;
@@ -109,9 +120,9 @@ h2 {
 }
 
 .btn {
-  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.3);
   margin-top: 10px;
 }
 .row {

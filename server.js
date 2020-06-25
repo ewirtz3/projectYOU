@@ -5,7 +5,7 @@ const passport = require("./config/passport");
 const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const {
-  allowInsecurePrototypeAccess
+  allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
 const morgan = require("morgan");
 const routes = require("./routes");
@@ -29,7 +29,7 @@ app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "main",
-    handlebars: allowInsecurePrototypeAccess(Handlebars)
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
   })
 );
 app.set("view engine", "handlebars");

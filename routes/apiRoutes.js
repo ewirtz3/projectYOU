@@ -46,19 +46,19 @@ apiRoutes.post("/user", (req, res) => {
   });
 });
 
-
 apiRoutes.post("/login", passport.authenticate("local"), (req, res) => {
   res.json(req.user);
-
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {
+  console.log(req.body);
   Exercise.create({
-    exercise_type: req.body.exercise_type,
-    exercise_duration: req.body.exercise_duration,
-    user_Id: req.body.user_Id,
+    // exercise_type: req.body.exercise_type,
+    ...req.body,
+    // exercise_duration: req.body.exercise_duration,
+    // UserId: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
@@ -68,7 +68,7 @@ apiRoutes.post("/:user/fluid", (req, res) => {
     numOfGlasses: req.body.numOfGlasses,
     user_Id: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
@@ -77,7 +77,7 @@ apiRoutes.post("/:user/sleep", (req, res) => {
     sleep_duration: req.body.sleep_duration,
     user_Id: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 

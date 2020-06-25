@@ -1,29 +1,29 @@
 <div class="jumbotron jumbotron-fluid profile-header">
     <div class="container">
-
-        <h1 class="display-4">
-            FITNESS TRACKER
-            <img src="https://image.flaticon.com/icons/png/512/95/95788.png" alt="fitness icon" height="8%" width="8%"
-                class="header-icon" />
-        </h1>
-        <p class="lead">
-
-            You are currently logged in as <span
-                style="font-weight: bolder; font-size:26px;">{{ User.username }}</span>.
-        </p>
-        <p class="lead">
-            Keep track of your exercise, fluid intake, and sleep below!
-        </p>
-        <p id="clock" class="clock lead">Welcome...</p>
+        <div class="row">
+            <div class="col-md-4 about-logo text-dark">
+                <img src="/img/color-logo.png" alt="projectYou-logo" class="logo" />
+                <p>
+                    TURN ONE DAY INTO DAY ONE.
+                    </br>
+                    You are currently logged in as <span class="log-in">{{ User.username }}</span>.
+                </p>
+                <p id="clock" class="clock">Welcome...</p>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
     </div>
 </div>
 
-<div class="row">
+
+
+<div class="row" id="grad">
     <div class="you-calc">
 
-        <div class="card text-white bg-info mb-3 container" id="fit-form">
-            <div class="card-header"><span
-                    style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}</span>
+        <div class="card text-white mb-3 container" id="fit-form">
+            <div class="card-header">Welcome, <span
+                    style="font-weight: bolder; font-size:18px;"></span>{{ User.first_name }}!</span>
             </div>
             <div class="card-body form">
                 <h5 class="card-title"><em>Add exercise, sleep, and fluid intake here</em></h5>
@@ -34,7 +34,7 @@
                             <input type="number" min="0" max="24" onKeyPress="if(this.value.length>1) return false;"
                                 style="width: 100%;" class="form-control" placeholder="Hours exercised" />
 
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-exercise">
+                            <button style="width: 100%;" type="button" class="btn btn-info" class="submit-exercise">
                                 Submit Exercise
                             </button>
                         </div>
@@ -44,7 +44,7 @@
                             <input style="width: 100%; display: block;" type="number" min="0" max="24"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Hours of sleep" />
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
+                            <button style="width: 100%;" type="button" class="btn btn-info" class="submit-sleep">
                                 Submit Sleep
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                             <input style="width: 100%;" type="number" min="0" max="99"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Number of glasses" />
-                            <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
+                            <button type="button" style="width: 100%;" class="btn btn-info submit-fluid">
                                 Submit Fluid Intake
                             </button>
                         </div>
@@ -108,6 +108,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="/js/moment.js"></script>

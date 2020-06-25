@@ -38,7 +38,6 @@ $signUpBtn.on("click", function () {
     alert(
       `Sign up successful! Please log in using your credentials to the left.`
     );
-    console.log(res);
   });
 });
 
@@ -49,10 +48,8 @@ $loginBtn.click((event) => {
     username: $("#username-login").val().trim(),
     password: $("#password-login").val().trim(),
   };
-  console.log(user);
 
   helloUser.getUser(user).done((res) => {
-    console.log(res);
     window.location.replace("/users/" + res.username);
   });
 });

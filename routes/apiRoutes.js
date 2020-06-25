@@ -34,50 +34,38 @@ apiRoutes.get("/:user/sleep", (req, res) => {
 });
 
 apiRoutes.post("/user", (req, res) => {
-  console.log(req.body);
   User.create({
-    // username: req.body.username,
-    // password: req.body.password,
-    // first_name: req.body.first_name,
-    // last_name: req.body.last_name,
     ...req.body,
   }).then((results) => {
     res.json(results);
   });
 });
 
-
 apiRoutes.post("/login", passport.authenticate("local"), (req, res) => {
   res.json(req.user);
-
 });
 
 apiRoutes.post("/:user/exercise", (req, res) => {
   Exercise.create({
-    exercise_type: req.body.exercise_type,
-    exercise_duration: req.body.exercise_duration,
-    user_Id: req.body.user_Id,
+    ...req.body,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
 apiRoutes.post("/:user/fluid", (req, res) => {
   Fluid.create({
-    fluid_type: req.body.fluid_type,
-    numOfGlasses: req.body.numOfGlasses,
-    user_Id: req.body.user_Id,
+    ...req.body,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
 apiRoutes.post("/:user/sleep", (req, res) => {
   Sleep.create({
-    sleep_duration: req.body.sleep_duration,
-    user_Id: req.body.user_Id,
+    ...req.body,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 

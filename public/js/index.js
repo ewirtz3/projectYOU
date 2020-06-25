@@ -8,13 +8,8 @@ const $fluidText = $("#fluid-text");
 const $exerciseText = $("#exercise-text");
 const $sleepText = $("#sleep-text");
 
-//methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together.
-const $fluidDescription = $("#fluid-description");
-const $exerciseDescription = $("#exercise-description");
-const $sleepDescription = $("#sleep-description");
-
-// The API object contains methods for each kind of request we'll make
-const API = {
+// The newPost object contains methods for each kind of request we'll make
+const newPost = {
   /////////////////////////////////POST METHODS
   //POST USER AJAX
   saveUser: function (user) {
@@ -122,7 +117,7 @@ const API = {
 
 // refreshfluids gets new fluids from the db and repopulates the list
 const refreshFluid = function () {
-  API.getFluid().then(function (data) {
+  newPost.getFluid().then(function (data) {
     const $fluids = data.map(function (fluid) {
       const $a = $("<a>")
         .text(fluid.text)
@@ -151,7 +146,7 @@ const refreshFluid = function () {
 
 // refreshExercises gets new exercises from the db and repopulates the list
 const refreshExercise = function () {
-  API.getExercise().then(function (data) {
+  newPost.getExercise().then(function (data) {
     const $exercises = data.map(function (exercise) {
       const $a = $("<a>")
         .text(exercise.text)
@@ -180,7 +175,7 @@ const refreshExercise = function () {
 
 // refreshSleep gets new sleeps from the db and repopulates the list
 const refreshSleep = function () {
-  API.getSleep().then(function (data) {
+  newPost.getSleep().then(function (data) {
     const $sleeps = data.map(function (sleep) {
       const $a = $("<a>")
         .text(sleep.text)
@@ -218,7 +213,7 @@ const handleFluid = function (event) {
     return;
   }
 
-  API.saveFluid(fluid).then(function () {
+  newPost.saveFluid(fluid).then(function () {
     refreshFluid();
   });
 
@@ -241,7 +236,7 @@ const handleExercise = function (event) {
     return;
   }
 
-  API.saveExercise(exercise).then(function () {
+  newPost.saveExercise(exercise).then(function () {
     refreshExercise();
   });
 
@@ -264,7 +259,7 @@ const handleSleep = function (event) {
     return;
   }
 
-  API.saveSleep(sleep).then(function () {
+  newPost.saveSleep(sleep).then(function () {
     refreshSleep();
   });
 
@@ -277,7 +272,7 @@ const handleSleep = function (event) {
 const handleDeleteExercise = function () {
   const idToDelete = $(this).parent().attr("data-id");
 
-  API.deleteExercise(idToDelete).then(function () {
+  newPost.deleteExercise(idToDelete).then(function () {
     refreshExercise();
   });
 };
@@ -285,7 +280,7 @@ const handleDeleteExercise = function () {
 const handleDeleteFluid = function () {
   const idToDelete = $(this).parent().attr("data-id");
 
-  API.deleteFluid(idToDelete).then(function () {
+  newPost.deleteFluid(idToDelete).then(function () {
     refreshFluid();
   });
 };
@@ -293,7 +288,7 @@ const handleDeleteFluid = function () {
 const handleDeleteSleep = function () {
   const idToDelete = $(this).parent().attr("data-id");
 
-  API.deleteSleep(idToDelete).then(function () {
+  newPost.deleteSleep(idToDelete).then(function () {
     refreshSleep();
   });
 };
@@ -306,5 +301,3 @@ $sleepBtn.on("click", handleSleep);
 $exerciseList.on("click", ".delete", handleDeleteExercise);
 $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
-
-//actual code---->

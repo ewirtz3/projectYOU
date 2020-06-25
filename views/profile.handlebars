@@ -35,11 +35,7 @@
                                 onKeyPress="if(this.value.length>1) return false;" style="width: 100%;"
                                 class="form-control" placeholder="Hours exercised" />
 
-<<<<<<< HEAD
-                            <button style="width: 100%;" type="button" class="btn btn-primary submit-exercise">
-=======
-                            <button style="width: 100%;" type="button" class="btn btn-info" class="submit-exercise">
->>>>>>> 007cfb802dbdfc9bff2cab2983f902a45c125f56
+                            <button style="width: 100%;" type="button" class="btn btn-info submit-exercise">
                                 Submit Exercise
                             </button>
                         </div>
@@ -49,23 +45,18 @@
                             <input id="sleep-text" style="width: 100%; display: block;" type="number" min="0" max="24"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Hours of sleep" />
-<<<<<<< HEAD
-                            <button style="width: 100%;" type="button" class="btn btn-primary submit-sleep">
-=======
-                            <button style="width: 100%;" type="button" class="btn btn-info" class="submit-sleep">
->>>>>>> 007cfb802dbdfc9bff2cab2983f902a45c125f56
+                            <button style="width: 100%;" type="button" class="btn btn-info submit-sleep">
                                 Submit Sleep
                             </button>
                         </div>
 
 
                         <div class="form-row" style="width: 100%;">
-                            <select style="width: 100%;" class="custom-select my-1 mr-sm-2"
-                                placeholder="What did you drink today?"
-                                id="inlineFormCustomSelectPref fluid-opt fluid-text" name="fluid"
-                                onchange="checkValue(this.value);">
+                            <select style="width: 100%;" class="custom-select fluid-opt my-1 mr-sm-2"
+                                placeholder="What did you drink today?" id="inlineFormCustomSelectPref fluid-text"
+                                name="fluid" onchange="checkValue(this.value);">
                                 <option value="water">Water</option>
-                                <option value="sports-drink">Sports drink</option>
+                                <option value="sports drink">Sports drink</option>
                                 <option value="juice">Juice</option>
                                 {{!-- Display input field when "other" is selected --}}
 
@@ -79,14 +70,9 @@
                 /> -->
                             </select>
                             <input style="width: 100%;" type="number" min="0" max="99"
-                                onKeyPress="if(this.value.length>1) return false;" class="form-control"
-<<<<<<< HEAD
-                                id="numOfGlasses" placeholder="Number of glasses" />
-                            <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
-=======
+                                onKeyPress="if(this.value.length>1) return false;" class="form-control numOfGlasses"
                                 placeholder="Number of glasses" />
                             <button type="button" style="width: 100%;" class="btn btn-info submit-fluid">
->>>>>>> 007cfb802dbdfc9bff2cab2983f902a45c125f56
                                 Submit Fluid Intake
                             </button>
                         </div>
@@ -115,9 +101,9 @@
             <div class="card-body">
 
                 <div class="user-data">
-                    <h5 id="exercise-data"></h5>
-                    <h5 id="fluid-data"></h5>
-                    <h5 id="sleep-data"></h5>
+                    <div id="exercise-data"></div>
+                    <div id="fluid-data"></div>
+                    <div id="sleep-data"></div>
                 </div>
             </div>
         </div>
@@ -134,22 +120,30 @@
     const exerciseBtn = $(".exerciseBtn");
     const fluidIntakeBtn = $(".fluidBtn");
     const sleepBtn = $(".sleepBtn");
-    //$("#exercise-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
+    //$(".user-data").html(`<h5>Use the form to track your stats!</h5>`);
 
     exerciseBtn.click(function () {
         $(this).addClass("active");
         fluidIntakeBtn.removeClass("active");
         sleepBtn.removeClass("active");
-        //add data from exercise table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>{{Exercise.exercise_duration}}<br>...is...`);
+        $("#exercise-data").removeClass("hide")
+        $("#fluid-data").addClass("hide")
+        $("#sleep-data").addClass("hide")
+
+
+
+        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>`);
     });
 
     fluidIntakeBtn.click(function () {
         $(this).addClass("active");
         exerciseBtn.removeClass("active");
         sleepBtn.removeClass("active");
-        //add data from fluid table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/><br>...is...`);
+        $("#exercise-data").addClass("hide")
+        $("#fluid-data").removeClass("hide")
+        $("#sleep-data").addClass("hide")
+
+        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/>`);
 
     });
 
@@ -157,9 +151,11 @@
         $(this).addClass("active");
         exerciseBtn.removeClass("active");
         fluidIntakeBtn.removeClass("active");
-        //add data from sleep table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: 
-            {{ Exercise.exercise_duration }}</em>`);
+        $("#exercise-data").addClass("hide")
+        $("#fluid-data").addClass("hide")
+        $("#sleep-data").removeClass("hide")
+
+        //$(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/>`);
 
     });
 

@@ -17,7 +17,7 @@ CREATE TABLE Exercises (
 CREATE TABLE Fluids (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fluid_type VARCHAR NOT NULL,
-    numOfGlasses INTEGER(3) NOT NULL,
+    numOfGlasses INTEGER(3),
     user_Id INTEGER(3) NOT NULL,
     FOREIGN KEY (user_Id) REFERENCES Users(id)
 );

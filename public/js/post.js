@@ -10,6 +10,9 @@ const $sleepDescription = $("#sleep-description");
 const $exerciseBtn = $(".submit-exercise");
 const $fluidBtn = $(".submit-fluid");
 const $sleepBtn = $(".submit-sleep");
+const exerciseArr = [];
+const fluidArr = [];
+const sleepArr = [];
 
 const newPost = {
   //POST FLUID AJAX
@@ -52,20 +55,25 @@ const newPost = {
 // Save the new Fluid to the db and refresh the list
 const handleFluid = function (event) {
   event.preventDefault();
-
   const fluid = {
-    fluid_type: $fluidText.val().trim(),
-    numOfGlasses: $("#numOfGlasses").val().trim(),
+    fluid_type: $(".fluid-opt").val().trim(),
+    numOfGlasses: $(".numOfGlasses").val().trim(),
+    user_Id: 1,
   };
+  fluidArr.push(parseInt(fluid.numOfGlasses));
+  totalFluid = fluidArr.reduce((a, b) => a + b, 0);
+  console.log(fluidArr);
+
   $("#fluid-data").html(
-    "<p>You've exercised a total of " +
-      fluid.numOfGlasses +
-      " glasses of" +
+    `<img src="https://image.flaticon.com/icons/svg/2907/2907404.svg" width="80px" height="80px" alt="water icon"/>` +
+      "<h5>You've drank for a total of " +
+      totalFluid +
+      " glasses of " +
       fluid.fluid_type +
-      "!</p>"
+      "!</h5>"
   );
-  if (!(fluid.text && fluid.description)) {
-    window.alert("You must enter an exercise text and description!");
+  if (!fluid.numOfGlasses) {
+    window.alert("You must enter an amount of fluid intake!");
     return;
   }
 
@@ -87,10 +95,14 @@ const handleExercise = function (event) {
 
     // description: $exerciseDescription.val().trim(),
   };
+  exerciseArr.push(parseInt(exercise.exercise_duration));
+  totalExercise = exerciseArr.reduce((a, b) => a + b, 0);
+
   $("#exercise-data").html(
-    "<p>You've exercised for a total of " +
-      exercise.exercise_duration +
-      " hours!</p>"
+    `<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>` +
+      "<h5>You've exercised for a total of " +
+      totalExercise +
+      " hours!</h5>"
   );
 
   if (!exercise.exercise_duration) {
@@ -115,11 +127,18 @@ const handleSleep = function (event) {
     sleep_duration: $sleepText.val().trim(),
     // description: $sleepDescription.val().trim(),
   };
+  sleepArr.push(parseInt(sleep.sleep_duration));
+  totalSleep = sleepArr.reduce((a, b) => a + b, 0);
+  console.log(sleepArr);
+
   $("#sleep-data").html(
-    "<p>You've slept for a total of " + sleep.sleep_duration + " hours!</p>"
+    `<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/>` +
+      "<h5>You've slept for a total of " +
+      totalSleep +
+      " hours!</h5>"
   );
   if (!sleep.sleep_duration) {
-    window.alert("Please enter amount of time slept");
+    window.alert("You must enter amount of time slept!");
     return;
   }
 
@@ -136,9 +155,9 @@ $(document).on("click", ".submit-exercise", function (event) {
   handleExercise(event);
 });
 // $exerciseBtn.on("click", handleExercise);
-$fluidBtn.on("click", ".submit-fluid", function (event) {
+$(document).on("click", ".submit-fluid", function (event) {
   handleFluid(event);
 });
-$sleepBtn.on("click", ".submit-sleep", function (event) {
+$(document).on("click", ".submit-sleep", function (event) {
   handleSleep(event);
 });

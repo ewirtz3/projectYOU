@@ -45,7 +45,7 @@
                             <input id="sleep-text" style="width: 100%; display: block;" type="number" min="0" max="24"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
                                 placeholder="Hours of sleep" />
-                            <button style="width: 100%;" type="button" class="btn btn-primary" class="submit-sleep">
+                            <button style="width: 100%;" type="button" class="btn btn-primary submit-sleep">
                                 Submit Sleep
                             </button>
                         </div>
@@ -72,7 +72,7 @@
                             </select>
                             <input style="width: 100%;" type="number" min="0" max="99"
                                 onKeyPress="if(this.value.length>1) return false;" class="form-control"
-                                placeholder="Number of glasses" />
+                                id="numOfGlasses" placeholder="Number of glasses" />
                             <button type="button" style="width: 100%;" class="btn btn-primary submit-fluid">
                                 Submit Fluid Intake
                             </button>
@@ -102,9 +102,9 @@
             <div class="card-body">
 
                 <div class="user-data">
-                    <p id="exercise-data"></p>
-                    <p id="fluid-data"></p>
-                    <p id="sleep-data"></p>
+                    <h5 id="exercise-data"></h5>
+                    <h5 id="fluid-data"></h5>
+                    <h5 id="sleep-data"></h5>
                 </div>
             </div>
         </div>
@@ -120,14 +120,14 @@
     const exerciseBtn = $(".exerciseBtn");
     const fluidIntakeBtn = $(".fluidBtn");
     const sleepBtn = $(".sleepBtn");
-    $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
+    //$("#exercise-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/><br>this...`);
 
     exerciseBtn.click(function () {
         $(this).addClass("active");
         fluidIntakeBtn.removeClass("active");
         sleepBtn.removeClass("active");
         //add data from exercise table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>{{Exercise.exercise_duration}}<br>this...`);
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/2928/2928158.svg" width="80px" height="80px" alt="exercise icon"/>{{Exercise.exercise_duration}}<br>...is...`);
     });
 
     fluidIntakeBtn.click(function () {
@@ -144,7 +144,8 @@
         exerciseBtn.removeClass("active");
         fluidIntakeBtn.removeClass("active");
         //add data from sleep table
-        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: {{ Exercise.exercise_duration }}</em>`);
+        $(".user-data").html(`<img src="https://image.flaticon.com/icons/svg/865/865789.svg" width="80px" height="80px" alt="sleep icon"/></h4><br>...progress!!!<br><em>by: 
+            {{ Exercise.exercise_duration }}</em>`);
 
     });
 

@@ -58,7 +58,7 @@ apiRoutes.post("/:user/exercise", (req, res) => {
     // exercise_duration: req.body.exercise_duration,
     // UserId: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
@@ -68,7 +68,7 @@ apiRoutes.post("/:user/fluid", (req, res) => {
     numOfGlasses: req.body.numOfGlasses,
     user_Id: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 
@@ -77,7 +77,7 @@ apiRoutes.post("/:user/sleep", (req, res) => {
     sleep_duration: req.body.sleep_duration,
     user_Id: req.body.user_Id,
   }).then((results) => {
-    res.end();
+    res.JSON(results);
   });
 });
 

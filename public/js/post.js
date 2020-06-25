@@ -32,7 +32,7 @@ const newPost = {
       },
       type: "POST",
       url: "/api/user/exercise",
-      data: JSON.stringify(exercise),
+      data: exercise,
     });
   },
   //POST SLEEP AJAX
@@ -54,10 +54,16 @@ const handleFluid = function (event) {
   event.preventDefault();
 
   const fluid = {
-    text: $fluidText.val().trim(),
-    description: $fluidDescription.val().trim(),
+    fluid_type: $fluidText.val().trim(),
+    numOfGlasses: $("#numOfGlasses").val().trim(),
   };
-
+  $("#fluid-data").html(
+    "<p>You've exercised a total of " +
+      fluid.numOfGlasses +
+      " glasses of" +
+      fluid.fluid_type +
+      "!</p>"
+  );
   if (!(fluid.text && fluid.description)) {
     window.alert("You must enter an exercise text and description!");
     return;
@@ -81,16 +87,20 @@ const handleExercise = function (event) {
 
     // description: $exerciseDescription.val().trim(),
   };
-  console.log("logging exercise " + exercise.exercise_duration);
+  $("#exercise-data").html(
+    "<p>You've exercised for a total of " +
+      exercise.exercise_duration +
+      " hours!</p>"
+  );
 
   if (!exercise.exercise_duration) {
     window.alert("You must enter an exercise text !");
     return;
   }
 
-  newPost.saveExercise(exercise).then(function () {
-    refreshExercise();
-  });
+  // newPost.saveExercise(exercise).then(function () {
+  //   refreshExercise();
+  // });
 
   $exerciseText.val("");
   $exerciseDescription.val("");
@@ -102,18 +112,20 @@ const handleSleep = function (event) {
   event.preventDefault();
 
   const sleep = {
-    text: $sleepText.val().trim(),
-    description: $sleepDescription.val().trim(),
+    sleep_duration: $sleepText.val().trim(),
+    // description: $sleepDescription.val().trim(),
   };
-
-  if (!(sleep.text && sleep.description)) {
-    window.alert("You must enter an sleep text and description!");
+  $("#sleep-data").html(
+    "<p>You've slept for a total of " + sleep.sleep_duration + " hours!</p>"
+  );
+  if (!sleep.sleep_duration) {
+    window.alert("Please enter amount of time slept");
     return;
   }
 
-  newPost.saveSleep(sleep).then(function () {
-    refreshSleep();
-  });
+  // newPost.saveSleep(sleep).then(function () {
+  //   refreshSleep();
+  // });
 
   $sleepText.val("");
   $sleepDescription.val("");
@@ -124,5 +136,9 @@ $(document).on("click", ".submit-exercise", function (event) {
   handleExercise(event);
 });
 // $exerciseBtn.on("click", handleExercise);
-$fluidBtn.on("click", handleFluid);
-$sleepBtn.on("click", handleSleep);
+$fluidBtn.on("click", ".submit-fluid", function (event) {
+  handleFluid(event);
+});
+$sleepBtn.on("click", ".submit-sleep", function (event) {
+  handleSleep(event);
+});

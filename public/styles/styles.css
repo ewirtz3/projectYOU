@@ -13,22 +13,48 @@
 .display-stats {
   margin: 10px;
   height: 550px;
-  background-color: lightgrey;
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  background-color: rgba(23, 214, 214, 0.671);
 }
 .footer {
   text-align: center;
-  height: 300px;
+  height: 400px;
   background-color: lightgrey;
   padding: 5px;
   color: grey;
   background-image: url("/img/footer.jpg");
   position: static;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+.form-control {
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#grad {
+  background-image: linear-gradient(
+    rgba(255, 127, 80, 0.507),
+    rgba(23, 214, 214, 0.671)
+  );
 }
 
 #fit-form {
   margin: 10px;
   height: 550px;
   padding: 10px;
+  background-color: #ff5100b0;
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 0 auto;
 }
 button {
   margin-bottom: 30px;
@@ -38,13 +64,16 @@ h2 {
   font-weight: bold;
   color: coral;
 }
-/* .jumbotron {
-  text-align: center;
-} */
+.jumbotron {
+  margin-bottom: 0;
+}
 
 .profile-header {
   background-image: url("/img/header.jpg");
-  text-align: left;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header-icon {
@@ -55,16 +84,36 @@ h2 {
 /*  */
 .clock {
   font-family: "Helvetica";
-  height: 50px;
-  width: 30%;
-  line-height: 60px;
-  margin: 10px auto 0;
-  color: #black;
-  background-color: transparent;
-  text-align: left;
+  width: 100%;
+  color: #000000;
+  text-align: center;
   float: left;
+  font-size: 20px;
 }
 
+.about-logo {
+  margin: 0 auto;
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+  float: left;
+  border-width: 1px;
+  border-radius: 25px;
+  border-style: solid;
+  height: 365px;
+  opacity: 90%;
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.btn {
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  margin-top: 10px;
+}
 .row {
   margin: 0 auto;
 }
@@ -80,6 +129,19 @@ h2 {
     margin: 0 auto;
     padding: 10px;
   }
+  .about-logo {
+    width: 100%;
+  }
+  .log-in {
+    font-size: 26px;
+    font-weight: bolder;
+  }
+  .logo {
+    width: 60%;
+  }
+  .clock {
+    width: 100%;
+  }
 }
 @media (min-width: 480px) {
   .you-display {
@@ -91,6 +153,19 @@ h2 {
     width: 90%;
     margin: 0 auto;
     padding: 10px;
+  }
+  .about-logo {
+    width: 100%;
+  }
+  .log-in {
+    font-size: 26px;
+    font-weight: bolder;
+  }
+  .logo {
+    width: 60%;
+  }
+  .clock {
+    width: 90%;
   }
 }
 @media (min-width: 600px) {
@@ -104,6 +179,19 @@ h2 {
     margin: 0 auto;
     padding: 10px;
   }
+  .about-logo {
+    width: 100%;
+  }
+  .log-in {
+    font-size: 15px;
+    font-weight: bolder;
+  }
+  .logo {
+    width: 75%;
+  }
+  .clock {
+    width: 80%;
+  }
 }
 @media (min-width: 801px) {
   .you-calc {
@@ -115,6 +203,20 @@ h2 {
     width: 65%;
     margin: 0 auto;
     padding: 10px;
+  }
+  .about-logo {
+    width: 100%;
+    font-size: 100%;
+  }
+  .logo {
+    width: 75%;
+  }
+  .clock {
+    width: 80%;
+  }
+  .log-in {
+    font-size: 15px;
+    font-weight: bolder;
   }
 }
 @media (min-width: 1025px) {
@@ -128,6 +230,19 @@ h2 {
     margin: 0 auto;
     padding: 10px;
   }
+  .about-logo {
+    width: 100%;
+  }
+  .log-in {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .logo {
+    width: 80%;
+  }
+  .clock {
+    width: 100%;
+  }
 }
 @media (min-width: 1281px) {
   .you-calc {
@@ -139,5 +254,18 @@ h2 {
     width: 65%;
     margin: 0 auto;
     padding: 10px;
+  }
+  .about-logo {
+    width: 100%;
+  }
+  .log-in {
+    font-size: 26px;
+    font-weight: bolder;
+  }
+  .logo {
+    width: 80%;
+  }
+  .clock {
+    width: 100%;
   }
 }

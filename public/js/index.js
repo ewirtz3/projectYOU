@@ -8,11 +8,6 @@ const $fluidText = $("#fluid-text");
 const $exerciseText = $("#exercise-text");
 const $sleepText = $("#sleep-text");
 
-//methods, variables, handlers, and event listeners are adapted from the provided boilerplate. We will need to make some changes. For example, I don't think we have anything called fluid/exercise/sleep description (see lines 12-14). These changes depend on how we want our front-end to look. I could leave this for someone doing front-end or we can do that together.
-const $fluidDescription = $("#fluid-description");
-const $exerciseDescription = $("#exercise-description");
-const $sleepDescription = $("#sleep-description");
-
 // The newPost object contains methods for each kind of request we'll make
 const newPost = {
   /////////////////////////////////POST METHODS
@@ -306,5 +301,3 @@ $sleepBtn.on("click", handleSleep);
 $exerciseList.on("click", ".delete", handleDeleteExercise);
 $fluidList.on("click", ".delete", handleDeleteFluid);
 $sleepList.on("click", ".delete", handleDeleteSleep);
-
-//actual code---->

@@ -8,10 +8,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER(3),
       allowNull: false,
     },
-    user_Id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   });
 
   Fluid.associate = function (models) {

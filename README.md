@@ -4,13 +4,7 @@
 
 This is a full-stack application, utilizing Node.js, Express.js, MySQL, Sequelize, Express Handlebars, a database, and Heroku. This is projectYOU, a simple tracker for anyone to log their minutes of exercise, glasses of water, and hours of sleep all in one place. User information is created upon sign up and stored in a database, which is updated as the user logs their health milestones.
 
-Future development includes:
--pairing with FitBit and Apple Health APIs
--daily mood check-ins, which over time will provide data to possibly view correlations between mood and health
--enhanced exercise, time, and fluid type choices
--ability to go back and view past days, months
-
-Link to project:
+Link to project: https://projectyou.herokuapp.com/
 
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/ewirtz3/projectYOU/standard/semistandard)
 

@@ -17,7 +17,6 @@ htmlRoutes.get("/users/:username", isAuthenticated, async (req, res) => {
 
   const this_user = await db.User.findOne(options);
   const that_user = this_user.dataValues;
-  console.log(this_user.dataValues);
   res.render("profile", {
     User: that_user,
   });

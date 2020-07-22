@@ -10,6 +10,7 @@ const {
 const morgan = require("morgan");
 const routes = require("./routes");
 const db = require("./models");
+const compression = require("compression");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -19,6 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan("dev"));
+app.use(compression({ filter: shouldCompress }));
+function shouldCompress(req, res) {
+  if (req.headers["x-no-compression"]) {
+    // don't compress responses with this request header
+    return false;
+  }
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
 
 app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());

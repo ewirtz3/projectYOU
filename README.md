@@ -6,7 +6,7 @@ This is a full-stack application, utilizing Node.js, Express.js, MySQL, Sequeliz
 
 Link to project: https://projectyou.herokuapp.com/
 
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/ewirtz3/projectYOU/standard/semistandard)
+<img src="https://img.shields.io/github/last-commit/ewirtz3/projectYOU?style=for-the-badge"/>
 
 ## Table of Contents
 

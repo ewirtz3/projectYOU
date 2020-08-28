@@ -27,7 +27,7 @@ Once signed in, user will view their profile page. This shows their current exer
 
 Shout out to TA Chris for his patient assistance!
 
-Collaborators' GitHub Usernames: <a href="https://github.com/jawalton6616">jawalton6616</a>, <a href="https://github.com/wslifer">wslifer</a>, <a href="https://github.com/hansbrougha">hansbrougha</a>, <a href="https://github.com/ewirtz3">ewirtz3</a>
+Collaborators: <a href="https://github.com/jawalton6616">Jacob Walton</a>, <a href="https://github.com/wslifer">Wesley Slifer</a>, <a href="https://github.com/hansbrougha">Andrew Hansbrough</a>, <a href="https://github.com/ewirtz3">Emily Wirtz</a>
 
 Third-Party Assets Used: Sequelize, Express, Express Handlebars, Morgan, MySQL2, Node, Heroku
 
